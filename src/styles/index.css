@@ -5,49 +5,147 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-.amarillo-texto{
+
+.claro {
+  background-color: #f7f7f7 !important;
+}
+
+.oscuro {
+  background-color: #1e1e1e;
+}
+
+.amarillo-texto {
   color: #FFCC00 !important;
 }
-.amarillo{
+
+.amarillo {
   background-color: #FFCC00;
 }
-.naranja-texto{
+
+.naranja-texto {
   color: #FA6121 !important;
 }
-.naranja-claro-texto{
+
+.naranja-claro-texto {
   color: #FFB739 !important;
 }
-.naranja-claro{
+
+.naranja-claro {
   background-color: #FFB739 !important;
 }
 
-.naranja{
-  background-color: #FA6121 ;
+.azul-oscuro-texto {
+  color: #15526c !important;
 }
-.azul-claro{
+
+.naranja {
+  background-color: #FA6121;
+}
+
+.azul-claro {
   background-color: #A0AEC1;
 }
 
-.azul-oscuro{
-  background-color: #466289 !important;
+.azul-oscuro {
+  background-color: #1e1e1e !important;
 }
 
-.plomo{
+.plomo {
   background-color: #627894 !important;
 }
-.gris{
+
+.gris {
   background-color: #A0AEC1 !important;
 }
-.nube{
+
+.nube {
   background-color: #DBE8F9 !important;
 }
 
-.imagen-fondo{
+.imagen-fondo {
   width: 100%;
   height: 100%;
+}
+
+.imagen-logo {
+  margin-top: 9px;
+  width: 200px;
+  height: 40px;
+}
+
+.principal {
+  width: 100%;
+  height: 200px;
+}
+
+.bienvenida {
+  margin-top: 70px;
+}
+
+.card-fondo-cutre {
+  background: linear-gradient(45deg, #15526c 0%, #54abbe 28%);
+  height: 100%;
+  width: 20px;
+}
+
+.bot-navbar {
+  background: linear-gradient(45deg, #15526c 0%, #54abbe 28%, #f99d2e 72%, #d95937 100%);
+  height: 6px;
+  margin-top: -16px
+}
+
+.borde-cero {
+  padding: 0 !important;
+}
+
+.border-cursos {
+  padding: 20px !important;
+}
+
+h1 {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+h3 {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 15.4px;
+}
+
+p {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+blockquote {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  font-size: 21px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+pre {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 18.5714px;
 }
