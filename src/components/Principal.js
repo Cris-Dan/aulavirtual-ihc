@@ -7,15 +7,15 @@ import Home from './Home';
 
 
 function Principal(props) {
-    const uwu = props.cursos;
+    const cursos = props.cursos;
     return (
 
         <div className="App">
 
             <Sidenav />
             <div className="content">
-                <Route exact path='/principal' render={(props) => <Home {...props} cursos={uwu} />} />
-                <Route path='/principal/curso' component={Curso} />
+                <Route exact path='/principal' render={(props) => <Home {...props} cursos={cursos} />} />
+                <Route path='/principal/:curso' component={Curso} />
             </div>
             <Footer />
         </div>

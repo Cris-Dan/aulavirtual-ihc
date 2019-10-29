@@ -10,7 +10,7 @@ function estadoHayTareaColor(estado) {
 function CursoCard(props) {
     return (
         <div>
-            <Link to="/principal/curso">
+            <Link to={"/principal/" + props._id}>
                 <div className="col s12 m12">
                     <div className="card horizontal ">
                         <div className="card-image">

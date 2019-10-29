@@ -11,10 +11,11 @@ function Home(props) {
                         <div className="col s12 m8">
                             <div className="section">
                                 <div className="row ">
-                                    <CursoCard estado={false} nombre="DATA WAREHOUSE" semestre="2019-2" escuela="SOFTWARE" ciclo="0" />
-                                    <CursoCard estado={true} nombre="GERENCIA DE PROYECTO DE SOFTWARE" semestre="2019-2" escuela="SOFTWARE" ciclo="8" />
-                                    <CursoCard estado={false} nombre="INTERACCION HOMBRE - COMPUTADOR" semestre="2019-2" escuela="SOFTWARE" ciclo="8" />
-                                    <CursoCard estado={false} nombre="GESTION DE CONFIGURACION Y MANTENIMIENTO" semestre="2019-2" escuela="SOFTWARE" ciclo="8" />
+                                    {props.cursos.map((curso, i) => {
+                                        return (
+                                            <CursoCard key={i} _id={curso._id} estado={curso.estado} nombre={curso.nombre} semestre={curso.semestre} escuela={curso.escuela} ciclo={curso.ciclo} />
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>

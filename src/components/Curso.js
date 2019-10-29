@@ -1,6 +1,10 @@
 import React from 'react';
 import ArchivosRecientes from './ArchivosRecientes';
 import ClaseCard from './Clase-card';
+import ClaseCard2 from './Clase-card2';
+
+
+
 function Curso() {
     return (
         <div>
@@ -61,7 +65,8 @@ function Curso() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <ClaseCard clase="3" mensajes={[{ "mensaje": "mensaje1" }, { "mensaje": "mensaje2" }]} archivos={[{ "archivo": "archivo1" }, { "archivo": "archivo2" }]} />
+                                            <ClaseCard clase="3" mensajes={[{ "mensaje": "desarrollar los ejercicios propuestos en el pdf de teoria." }, { "mensaje": "mensaje2" }]} archivos={[{ "archivo": "Verificacion y validacion.pdf" }, { "archivo": "Formato para el proyecto.docx" }]} />
+                                            <ClaseCard2 />
                                         </div>
 
                                     </div>
