@@ -1,7 +1,7 @@
 .social-bar {
     position: fixed;
     right: 0;
-    top: 80%;
+    bottom: 12%;
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;

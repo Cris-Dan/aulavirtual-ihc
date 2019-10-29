@@ -1,23 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/App.css';
-import Sidenav from './Sidenav';
-import Footer from './Footer';
-
+import firebase from 'firebase';
+import { DB_CONFIG } from "../config/config";
+import 'firebase/database';
 function App({ children }) {
   return (
     <div className="App">
-      <Sidenav />
-      <div className="content">
-        {children}
-      </div>
-      <Footer />
+      {children}
     </div>
   );
 }
 
 App.propTypes = {
-  childre: PropTypes.node,
+  children: PropTypes.node,
 };
 
 export default App;

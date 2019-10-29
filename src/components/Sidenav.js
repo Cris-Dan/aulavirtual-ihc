@@ -3,25 +3,25 @@ import { Link } from 'react-router-dom';
 function Sidenav() {
     return (
         <div>
-            <div class="social-bar">
-                <a href="https://www.facebook.com/sistemasUNMSM/" class="icon icon-facebook2" rel="noopener noreferrer" target="_blank"></a>
-                <a href="https://sistemas.unmsm.edu.pe" class="icon icon-earth" rel="noopener noreferrer" target="_blank"></a>
+            <div className="social-bar">
+                <a href="https://www.facebook.com/sistemasUNMSM/" className="icon icon-facebook2" rel="noopener noreferrer" target="_blank"></a>
+                <a href="https://sistemas.unmsm.edu.pe" className="icon icon-earth" rel="noopener noreferrer" target="_blank"></a>
             </div>
-            <div class="navbar-fixed">
+            <div className="navbar-fixed">
                 <nav>
                     <div className="nav-wrapper oscuro">
                         <div className="row">
                             <div className="col s12 m12">
-                                <div class="container">
+                                <div className="container">
 
 
                                     <Link to="/" className="left"><img className="imagen-logo" src="logo-fisi-header-2.png" alt="logo" /></Link>
-                                    <a href="#" data-target="mobile-navbar" class="sidenav-trigger right">
+                                    <a href="#" data-target="mobile-navbar" className="sidenav-trigger right">
                                         <i className="material-icons naranja-texto">menu</i>
                                     </a>
                                     <ul id="navbar-items" className="right hide-on-med-and-down">
-                                        <li><Link to="/about"> Mensajes <i className="material-icons left naranja-claro-texto">forum</i> </Link></li>
-                                        <li><Link to="/">Mis Cursos <i className="material-icons naranja-claro-texto left">book</i></Link></li>
+                                        <li><Link to="/principal"> Mensajes <i className="material-icons left naranja-claro-texto">forum</i> </Link></li>
+                                        <li><Link to="/principal">Mis Cursos <i className="material-icons naranja-claro-texto left">book</i></Link></li>
 
                                         <li>
                                             <a className="dropdown-trigger" data-target="dropdown-menu" href="#">
@@ -51,7 +51,7 @@ function Sidenav() {
                 <li>
                     <div className="user-view">
                         <div className="background">
-                            <img class="imagen-fondo" src="gatos-persas.jpg" alt="imagen fondo" />
+                            <img className="imagen-fondo" src="gatos-persas.jpg" alt="imagen fondo" />
                         </div>
                         <a href="#user"><img className="circle" src="gato.jpg" alt="imagen usuario" /></a>
                         <a href="#name"><span className="white-text name">Usuario</span></a>
@@ -60,38 +60,38 @@ function Sidenav() {
                 </li>
                 <li>
                     <Link to="/" className="sidenav-close white-text">
-                        <i class="material-icons left naranja-claro-texto">assignment</i>
+                        <i className="material-icons left naranja-claro-texto">assignment</i>
                         Mis Notas
                     </Link>
                 </li>
                 <li>
                     <Link to="/" className="sidenav-close white-text">
-                        <i class="material-icons left naranja-claro-texto">person</i>
+                        <i className="material-icons left naranja-claro-texto">person</i>
                         Mi Perfil
                         </Link>
                 </li>
-                <li class="divider" ></li>
+                <li className="divider" ></li>
                 <li>
                     <Link to="/" className="sidenav-close white-text">
-                        <i class="material-icons naranja-claro-texto left">book</i>
+                        <i className="material-icons naranja-claro-texto left">book</i>
                         Mis Cursos
                     </Link>
                 </li>
                 <li>
                     <Link to="/about" className="sidenav-close white-text">
-                        <i class="material-icons left naranja-claro-texto">forum</i>
+                        <i className="material-icons left naranja-claro-texto">forum</i>
                         Mensajes
                     </Link>
                 </li>
-                <li class="divider" ></li>
+                <li className="divider" ></li>
                 <li>
                     <Link to="/" className="sidenav-close white-text">
-                        <i class="material-icons left naranja-claro-texto">logout</i>Cerrar Sesion
+                        <i className="material-icons left naranja-claro-texto">logout</i>Cerrar Sesion
                     </Link>
                 </li>
             </ul>
-            <div class="parallax-container principal">
-                <div class="parallax"><img src="fisi-pabellon.jpg" alt="fisi pabellon" /></div>
+            <div className="parallax-container principal">
+                <div className="parallax"><img src="fisi-pabellon.jpg" alt="fisi pabellon" /></div>
                 <div className="row">
                     <div className="col s12 m8 offset-m2">
                         <div className="white-text transparent bienvenida">

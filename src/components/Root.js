@@ -1,17 +1,18 @@
+/* eslint-disable no-unused-expressions */
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import App from './App';
-import Home from './Home';
-import About from './About';
-import Curso from './Curso';
+import Login from './Login';
+import Principal from './Principal';
+
+
 function Root(props) {
     return (
         <Router>
             <App>
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path='/about' component={About} />
-                    <Route path='/curso' component={Curso} />
+                    <Route exact path="/" component={Login} />
+                    <Route path='/principal' render={(props) => { return true ? (<Principal {...props} cursos="uwu" />) : (<Redirect to="/" />) }} />
                 </Switch>
             </App>
         </Router>

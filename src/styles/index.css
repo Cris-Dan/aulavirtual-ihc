@@ -5,6 +5,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
@@ -63,6 +73,10 @@ code {
 
 .nube {
   background-color: #DBE8F9 !important;
+}
+
+.label-color {
+  color: #9e9e9e !important;
 }
 
 .imagen-fondo {
@@ -167,4 +181,28 @@ pre {
 .input-field input[type=text]:focus {
   border-bottom: 1px solid white !important;
   box-shadow: 0 1px 0 0 white !important;
+}
+
+.pie3 {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 70px;
+}
+
+.inicio {
+  padding-top: 10%;
+}
+
+.fondo {
+  height: 100%;
+  width: 100%;
+}
+
+.boton-ingresar {
+  background: linear-gradient(0deg, #15526c 0%, #54abbe 100%);
+}
+
+.card-borde{
+  box-shadow: none;
 }

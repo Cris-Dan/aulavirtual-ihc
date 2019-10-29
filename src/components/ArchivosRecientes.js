@@ -11,22 +11,22 @@ function ArchivosRecientes() {
                             <div className="card azul-oscuro">
                                 <div className="card-content white-text">
                                     <span className="card-title">Archivos Recientes</span>
-                                    
-                                    <div class="input-field white-text">
-                                            <i class="material-icons prefix">search</i>
-                                            <input type="text" id="autocomplete-input" class="autocomplete white-text" />
-                                            <label for="autocomplete-input">busqueda de archivos</label>
-                                     </div>
+
+                                    <div className="input-field white-text">
+                                        <i className="material-icons prefix">search</i>
+                                        <input type="text" id="autocomplete-input" className="autocomplete white-text" />
+                                        <label htmlFor="autocomplete-input">busqueda de archivos</label>
+                                    </div>
 
                                 </div>
                                 <div className="collection ">
-                                    <a href="#!" class="collection-item claro naranja-texto"><i class="icon-file-pdf"></i> Verificacion y validacion.pdf</a>
-                                    <a href="#!" class="collection-item claro naranja-texto"><i class="icon-file-zip"></i> LibreriaGLUT.rar</a>
-                                    <a href="#!" class="collection-item claro naranja-texto"><i class="icon-file-word"></i> Formato para el proyecto.docx</a>
-                                    <a href="#!" class="collection-item claro naranja-texto"><i class="icon-file-pdf"></i> Clase 7.pdf</a>
-                                    <a href="#!" class="collection-item claro naranja-texto"><i class="icon-file-pdf"></i> Clase 8.pdf</a>
-                                    <a href="#!" class="collection-item claro naranja-texto"><i class="icon-file-pdf"></i> Clase 9.pdf</a>
-                                    <a href="#!" class="collection-item claro naranja-texto"><i class="icon-file-pdf"></i> Clase 10.pdf</a>
+                                    <a href="#!" className="collection-item claro naranja-texto"><i className="icon-file-pdf"></i> Verificacion y validacion.pdf</a>
+                                    <a href="#!" className="collection-item claro naranja-texto"><i className="icon-file-zip"></i> LibreriaGLUT.rar</a>
+                                    <a href="#!" className="collection-item claro naranja-texto"><i className="icon-file-word"></i> Formato para el proyecto.docx</a>
+                                    <a href="#!" className="collection-item claro naranja-texto"><i className="icon-file-pdf"></i> Clase 7.pdf</a>
+                                    <a href="#!" className="collection-item claro naranja-texto"><i className="icon-file-pdf"></i> Clase 8.pdf</a>
+                                    <a href="#!" className="collection-item claro naranja-texto"><i className="icon-file-pdf"></i> Clase 9.pdf</a>
+                                    <a href="#!" className="collection-item claro naranja-texto"><i className="icon-file-pdf"></i> Clase 10.pdf</a>
                                 </div>
 
                             </div>
