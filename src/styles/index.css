@@ -190,9 +190,6 @@ pre {
   height: 70px;
 }
 
-.inicio {
-  padding-top: 10%;
-}
 
 .fondo {
   height: 100%;
@@ -203,6 +200,6 @@ pre {
   background: linear-gradient(0deg, #15526c 0%, #54abbe 100%);
 }
 
-.card-borde{
+.card-borde2{
   box-shadow: none;
 }

@@ -1,5 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import firebase from 'firebase';
+function handleLogout() {
+    firebase.auth().signOut()
+        .then(
+            result => console.log(`${result.user.email} ha salido`))
+        .catch(error => console.log(`Error ${error.code}: ${error.message}`));
+}
 function Sidenav() {
     return (
         <div>
@@ -33,7 +40,7 @@ function Sidenav() {
                                         <li><a href="#" className="black-text">Mis Notas</a></li>
                                         <li><a href="#" className="black-text">Mi Perfil</a></li>
                                         <li className="divider"></li>
-                                        <li><a href="#" className="black-text">Cerrar Sesion</a></li>
+                                        <li><a href="#" className="black-text" onClick={handleLogout}>Cerrar Sesion</a></li>
                                     </ul>
                                 </div>
 

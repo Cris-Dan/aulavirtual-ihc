@@ -1,40 +1,5 @@
 import React from 'react';
 
-const clases = [{
-    "_id": 1,
-    "secciones": [
-        {
-            "titulo": "titulo1",
-            "mensajes": [{ "mensaje": "mensaje1" }, { "mensaje": "mensaje2" }],
-            "archivos": [{ "archivo": "archivo1" }, { "archivo": "archivo2" }]
-        }
-        ,
-        {
-            "titulo": "titulo2",
-            "mensajes": [{ "mensaje": "mensaje1" }, { "mensaje": "mensaje2" }],
-            "archivos": [{ "archivo": "archivo1" }, { "archivo": "archivo2" }]
-        }
-    ]
-},
-{
-    "_id": 2,
-    "secciones": [
-        {
-            "titulo": "titulo1",
-            "mensajes": [{ "mensaje": "mensaje1" }, { "mensaje": "mensaje2" }],
-            "archivos": [{ "archivo": "archivo1" }, { "archivo": "archivo2" }]
-        }
-        ,
-        {
-            "titulo": "titulo2",
-            "mensajes": [{ "mensaje": "mensaje1" }, { "mensaje": "mensaje2" }],
-            "archivos": [{ "archivo": "archivo1" }, { "archivo": "archivo2" }]
-        }
-    ]
-}
-];
-
-
 function Mensajes(mensajes) {
     const men = mensajes.map((mensaje, i) =>
         <p key={i} className="collection-item naranja-texto">{mensaje.mensaje}</p>
@@ -79,7 +44,7 @@ function Clases(clases) {
 function CursoCard2(props) {
     return (
         <div className="clase">
-            {Clases(clases)}
+            {Clases(props.clases)}
         </div>
     );
 };

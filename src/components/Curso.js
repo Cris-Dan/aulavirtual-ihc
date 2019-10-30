@@ -3,7 +3,39 @@ import ArchivosRecientes from './ArchivosRecientes';
 import ClaseCard from './Clase-card';
 import ClaseCard2 from './Clase-card2';
 
-
+const clases = [{
+    "_id": 1,
+    "secciones": [
+        {
+            "titulo": "Teoria",
+            "mensajes": [{ "mensaje": "desarrollar los ejercicios propuestos en el pdf." }],
+            "archivos": [{ "archivo": "Verificacion y validacion.pdf" }, { "archivo": "Formato para el proyecto.docx" }]
+        }
+        ,
+        {
+            "titulo": "Practica",
+            "mensajes": [{ "mensaje": "agregar la libreria a su IDE" }, { "mensaje": "resolver los ejercicos de la clase 7" }],
+            "archivos": [{ "archivo": "LibreriaGLUT.rar" }, { "archivo": "Clase 7.pdf" }]
+        }
+    ]
+},
+{
+    "_id": 2,
+    "secciones": [
+        {
+            "titulo": "Teoria",
+            "mensajes": [{ "mensaje": "desarrollar los ejercicios propuestos en el pdf." }],
+            "archivos": [{ "archivo": "Verificacion y validacion.pdf" }, { "archivo": "Formato para el proyecto.docx" }]
+        }
+        ,
+        {
+            "titulo": "Laboratorio",
+            "mensajes": [{ "mensaje": "agregar la libreria a su IDE" }, { "mensaje": "resolver los ejercicos de la clase 7" }],
+            "archivos": [{ "archivo": "LibreriaGLUT.rar" }, { "archivo": "Clase 7.pdf" }]
+        }
+    ]
+}
+];
 
 function Curso() {
     return (
@@ -27,46 +59,8 @@ function Curso() {
                                 <div className="card">
                                     <div className="card-content black-text">
                                         <div className="row">
-                                            <div className="clase">
-                                                <div className="col s12 m12">
-                                                    <h4 className="card-title left naranja-claro-texto"><b>Clase 1</b></h4>
-                                                </div>
-                                                <div className="collection">
-                                                    <div className="row">
-                                                        <div className="col s12 m12 claro">
-                                                            <h5 className="collection-item  left claro">Teoria</h5>
-                                                        </div>
-                                                        <a href="#!" className="collection-item naranja-texto"><i className="icon-file-pdf"></i> Verificacion y validacion.pdf</a>
-                                                        <a href="#!" className="collection-item naranja-texto"><i className="icon-file-word"></i> Formato para el proyecto.docx</a>
-                                                        <div className="col s12 m12 claro">
-                                                            <h5 className="collection-item left claro">Practica</h5>
-                                                        </div>
-                                                        <p className="collection-item naranja-texto">desarrollar los ejercicios propuestos en el pdf de teoria.</p>
-                                                        <a href="#!" className="collection-item naranja-texto"><i className="icon-file-word"></i> Formato para el proyecto.docx</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="clase">
-                                                <div className="col s12 m12">
-                                                    <h4 className="card-title left naranja-claro-texto"><b>Clase 2</b></h4>
-                                                </div>
-                                                <div className="collection">
-                                                    <div className="row">
-                                                        <div className="col s12 m12 claro">
-                                                            <h5 className="collection-item  left claro">Teoria</h5>
-                                                        </div>
-                                                        <a href="#!" className="collection-item naranja-texto"><i className="icon-file-pdf"></i> Verificacion y validacion.pdf</a>
-                                                        <a href="#!" className="collection-item naranja-texto"><i className="icon-file-word"></i> Formato para el proyecto.docx</a>
-                                                        <div className="col s12 m12 claro">
-                                                            <h5 className="collection-item left claro">Practica</h5>
-                                                        </div>
-                                                        <p className="collection-item naranja-texto">desarrollar los ejercicios propuestos en el pdf de teoria.</p>
-                                                        <a href="#!" className="collection-item naranja-texto"><i className="icon-file-word"></i> Formato para el proyecto.docx</a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <ClaseCard2 clases={clases} />
                                             <ClaseCard clase="3" mensajes={[{ "mensaje": "desarrollar los ejercicios propuestos en el pdf de teoria." }, { "mensaje": "mensaje2" }]} archivos={[{ "archivo": "Verificacion y validacion.pdf" }, { "archivo": "Formato para el proyecto.docx" }]} />
-                                            <ClaseCard2 />
                                         </div>
 
                                     </div>
