@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function estadoHayTarea(estado) {
-    return estado ? (<a href="#">hay tareas pendientes!</a>) : (<a href="#" className="azul-oscuro-texto">no hay tareas pendientes.</a>);
+    return estado ? (<p className="naranja-texto">hay tareas pendientes!</p>) : (<p className="azul-oscuro-texto">no hay tareas pendientes.</p>);
 }
 function estadoHayTareaColor(estado) {
     return estado ? "card-fondo-cutre2" : "card-fondo-cutre";

@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-expressions */
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import App from './App';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './Login';
 import Principal from './Principal';
-import firebase from 'firebase';
-
+import { AuthProvider } from "./Auth";
+import Admin from './Admin';
 const cursos = [{
     "_id": 1,
     "estado": false,
@@ -39,39 +38,18 @@ const cursos = [{
     "ciclo": "8"
 },
 ]
-function handleAuth() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth()
-        .signInWithPopup(provider)
-        .then(
-            result => {
-                console.log(`${result.user.email} ha iniciado sesion`);
-                <Redirect to="/principal" />;
-                console.log(`${result.user.email} ha iniciado sesion2`);
-            })
-        .catch(error => console.log(`Error ${error.code}: ${error.message}`));
-}
 
-
-function Root(props) {
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            setUser(user);
-        })
-    });
-
-
+const Root = (props) => {
     return (
-        <Router>
-            <App>
-                <Switch>
-                    <Route exact path="/" render={() => <Login handleAuth={handleAuth} />} />
-                    <Route path='/principal' render={() => { return user ? (<Principal cursos={cursos} />) : (<Redirect to="/" />) }} />
-                </Switch>
-            </App>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <div>
+                    <Route exact path="/" render={() => <Login />} />
+                    <Route path='/admin' render={() => <Admin />} />
+                    <Route path='/principal' render={() => <Principal cursos={cursos} />} />
+                </div>
+            </Router>
+        </AuthProvider>
     );
 };
 

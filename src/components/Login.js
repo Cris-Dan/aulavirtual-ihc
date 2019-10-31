@@ -1,9 +1,47 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext } from "react";
+import { withRouter, Redirect } from "react-router";
+import app from "firebase";
+import { AuthContext } from "./Auth.js";
 import SidenavLogin from './Sidenav-login';
-import { Link, withRouter } from 'react-router-dom';
 import '../styles/Login.css';
 
-function login(props) {
+
+const Login = ({ history }) => {
+  const handleLogin = useCallback(
+    async event => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        await app
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
+        history.push("/Principal");
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [history]
+  );
+  const handleLoginGoogle = useCallback(
+    async event => {
+      event.preventDefault();
+      try {
+        const provider = new app.auth.GoogleAuthProvider();
+        await app.auth().signInWithPopup(provider);
+
+        history.push("/Principal");
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [history]
+  );
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to="/Principal" />;
+  }
 
   return (
     <div>
@@ -13,7 +51,7 @@ function login(props) {
           <div id="login-page" className="row">
             <div className="col s12 m6 offset-m3 card card-borde">
               <div className="card-content">
-                <form className="login-form">
+                <form className="login-form" onSubmit={handleLogin}>
                   <div className="row">
                     <div className="input-field col s12 m8 offset-m2">
                       <div className="row">
@@ -38,7 +76,7 @@ function login(props) {
 
 
                     <div className="input-field col s12 m8 offset-m2">
-                      <Link to="/principal" className="btn waves-effect waves-light col s12 boton-ingresar">Ingresar </Link>
+                      <button type="submit" className="btn waves-effect waves-light col s12 boton-ingresar">Ingresar </button>
                     </div>
 
 
@@ -50,19 +88,22 @@ function login(props) {
                       <p>O ingrese con una cuenta de google.</p>
                     </div>
 
-                    <div className="input-field">
-                      <div className="btn white darken-4 col s12 m8 offset-m2">
-                        <a
-                          className=" a-tt-none deep-orange-text " onClick={props.handleAuth}>
-                          <div className="left">
-                            <img className="logo-google" alt="Google Logo" src="google logo.png"></img>
-                          </div>
-                          Ingresa con Google
-                          </a>
-                      </div>
-                    </div>
+
                   </div>
                 </form>
+                <div className="row">
+                  <div className="input-field">
+                    <div className="btn white darken-4 col s12 m8 offset-m2" onClick={handleLoginGoogle}>
+                      <a
+                        className=" a-tt-none deep-orange-text " >
+                        <div className="left">
+                          <img className="logo-google" alt="Google Logo" src="google logo.png"></img>
+                        </div>
+                        Ingresa con Google
+                          </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -72,4 +113,4 @@ function login(props) {
   );
 };
 
-export default withRouter(login);
+export default withRouter(Login);
