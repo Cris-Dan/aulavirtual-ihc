@@ -1,0 +1,19 @@
+nav li {
+    display: inline-block !important;
+}
+
+.bot-navbar {
+    background: linear-gradient(45deg, #15526c 0%, #54abbe 28%, #f99d2e 72%, #d95937 100%);
+    height: 6px !important;
+    padding: 0 !important;
+}
+
+.imagen-logo {
+    margin-top: 9px;
+    width: 200px;
+    height: 40px;
+}
+
+.naranja {
+    color: #f99d2e;
+}

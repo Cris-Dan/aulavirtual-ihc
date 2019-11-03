@@ -1,0 +1,21 @@
+.con-tarea {
+    color: #f99d2e;
+}
+
+.color-tab {
+    color: #495057 !important;
+    background-color: white !important;
+}
+
+.card-fondo-cutre {
+    background: linear-gradient(45deg, #15526c 0%, #54abbe 28%);
+    height: 100%;
+    width: 100%;
+}
+
+.card-fondo-cutre2 {
+    background: linear-gradient(45deg, #f99d2e 72%, #d95937 100%);
+    height: 100%;
+    width: 100%;
+}
+
