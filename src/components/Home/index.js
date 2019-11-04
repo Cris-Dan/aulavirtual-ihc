@@ -11,6 +11,7 @@ class HomePage extends Component {
     this.state = {
       loading: false,
       users: [],
+      archivos: [],
     };
   }
 
@@ -30,44 +31,68 @@ class HomePage extends Component {
         loading: false,
       });
     });
+
+    this.props.firebase.archivos().on('value', snapshot => {
+      const archivosObject = snapshot.val();
+
+      const archivosList = Object.keys(archivosObject).map(key => ({
+        ...archivosObject[key],
+        uid: key,
+      }));
+
+      this.setState({
+        archivos: archivosList,
+        loading: false,
+      });
+    });
   }
 
   componentWillUnmount() {
     this.props.firebase.cursos().off();
+    this.props.firebase.archivos().off();
   }
 
   render() {
-    const { users, loading } = this.state;
-    console.log(users);
-    return (<div className="container margen">
-      {console.log("cursos:")}
-      {console.log(this.state.users)}
-      <div className="row">
-        <div className="col-12 col-md-8">
-          {loading && <div>Cargando ...</div>}
-          <div>
-            <UserList users={users} />
-          </div>
-        </div>
-        <div className="col">
+    const { users, loading, archivos } = this.state;
+
+    return (
+      <div className="container margen">
+        {loading && <div><h3>Cargando pagina por favor espere...</h3></div>}
+        {!loading && users && archivos && (<React.Fragment>
           <div className="row">
-            <ArchivosRecientes />
-            <Biblioteca />
+            <div className="col-12 col-md-8">
+              <UserList users={users} />
+
+            </div>
+            <div className="col-12 col-md-4">
+              <div className="row">
+                <ArchivosRecientes archivos={archivos} />
+                <Biblioteca />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>);
+        </React.Fragment>)}
+
+
+      </div>);
   }
 }
 
 const UserList = ({ users }) => (
-  <ul>
-    {users.map(curso => (
-      <Link className="sin-deco" key={curso.uid} to={`/home/${curso.uid}`}>
-        <CursoCard estado={curso.estado} nombre={curso.nombre} semestre={curso.semestre} escuela={curso.escuela} ciclo={curso.ciclo} />
-      </Link>
-    ))}
-  </ul>
+  <div className="row row-eq-height">
+    {
+      users.map(curso => (
+        <div className="col-md-12 " key={curso.uid}>
+          <Link className="sin-deco " to={`/home/${curso.uid}`}>
+            <CursoCard estado={curso.estado} nombre={curso.nombre} semestre={curso.semestre} escuela={curso.escuela} ciclo={curso.ciclo} />
+          </Link>
+        </div>
+      )
+      )
+    }
+  </div >
+
+
 );
 
 export default withFirebase(HomePage);

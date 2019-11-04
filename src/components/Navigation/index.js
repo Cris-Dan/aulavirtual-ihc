@@ -8,16 +8,16 @@ import { AuthUserContext } from '../Session';
 import './nav.css';
 const Navigation = () => (
   <div className="navfijo">
-    <nav class="navbar navbar-expand-lg navbar-light oscuro ">
+    <nav className="navbar navbar-expand-lg navbar-light oscuro ">
       <div className="container">
         <a className="navbar-brand" href="#">
           <img src="logo-fisi-header-2.png" className="imagen-logo" alt="" />
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon naranja-texto">  <i class="material-icons">dehaze</i></span>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon naranja-texto">  <i className="material-icons">dehaze</i></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto enLinea">
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto enLinea">
             <AuthUserContext.Consumer>
               {authUser =>
                 authUser ? <NavigationAuth /> : <NavigationNonAuth />

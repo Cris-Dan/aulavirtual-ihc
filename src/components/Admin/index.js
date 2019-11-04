@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FormClase from './FormClase';
 import { withFirebase } from '../Firebase';
-
+import FormArchivos from './FormArchivos';
 
 
 class AdminPage extends Component {
@@ -109,6 +109,7 @@ const UserList = ({ users }) => (
       </div>
       <div className="col">
         <FormClase users={users} />
+        <FormArchivos />
       </div>
     </div>
   </div>

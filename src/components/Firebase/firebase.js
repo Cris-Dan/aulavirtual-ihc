@@ -51,8 +51,16 @@ class Firebase {
   //*** Clase API ***
 
   clase = uid => this.db.ref(`clases/${uid}`);
-  
+
   clases = () => this.db.ref('clases');
+
+  //*** Archivo API ***
+
+  archivo = uid => this.db.ref(`archivos/${uid}`);
+
+  archivos = () => this.db.ref('archivos');
+
 }
+
 
 export default Firebase;

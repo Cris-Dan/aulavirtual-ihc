@@ -1,5 +1,5 @@
 .largo {
-    height: 45px;
+    height: 55px;
 }
 
 .active-pink-2 input[type=text]:focus:not([readonly]) {
@@ -42,4 +42,8 @@
 
 .active-pink .fa, .active-pink-2 .fa {
     color: #f48fb1;
+}
+
+.buscar{
+    margin-top: 30%;
 }

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-
+import ArchivosRecientes from '../ArchivosRecientes';
+import Biblioteca from '../Bibliotecas';
+import './Curso.css';
 class CursoPage extends Component {
     constructor(props) {
         super(props);
@@ -11,6 +13,9 @@ class CursoPage extends Component {
             users: [],
             curso: null,
             cursoId: "",
+            clases: [],
+            archivos: [],
+            claseId: null
         };
     }
 
@@ -23,19 +28,28 @@ class CursoPage extends Component {
             this.setState({
                 curso: cursoObject,
                 loading: false,
+                claseId: snapshot.val().clases
+            });
+            this.props.firebase.clase(snapshot.val().clases).on('value', snapshot => {
+                const claseObject = snapshot.val().clase;
+                this.setState({
+                    clases: claseObject,
+                    loading: false,
+                });
+                console.log(this.state.clases);
             });
         });
 
-        this.props.firebase.users().on('value', snapshot => {
-            const usersObject = snapshot.val();
+        this.props.firebase.archivos().on('value', snapshot => {
+            const archivosObject = snapshot.val();
 
-            const usersList = Object.keys(usersObject).map(key => ({
-                ...usersObject[key],
+            const archivosList = Object.keys(archivosObject).map(key => ({
+                ...archivosObject[key],
                 uid: key,
             }));
 
             this.setState({
-                users: usersList,
+                archivos: archivosList,
                 loading: false,
             });
         });
@@ -43,93 +57,106 @@ class CursoPage extends Component {
     }
 
     componentWillUnmount() {
-        this.props.firebase.users().off();
-        this.props.firebase.curso().off();
+        this.props.firebase.clase(this.state.claseId).off();
+        this.props.firebase.curso(this.props.match.params.curso).off();
+        this.props.firebase.archivos().off();
     }
 
     render() {
-        const { users, cursoId, curso, loading } = this.state;
+        const { clases, curso, loading, archivos } = this.state;
         console.log(curso);
         return (
             <div className="container margen">
-                {loading && <div>Cargando ...</div>}
-                {!loading && curso && users && (<React.Fragment>
-                    <nav aria-label="breadcrumb">
-                        <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><Link to="/Home">Cursos</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">{curso}</li>
-                        </ol>
-                    </nav>
-                    <div className="accordion" id="accordionExample">
-                        <div className="card">
-                            <div className="card-header" id="headingOne">
-                                <h2 className="mb-0">
-                                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Clase 1
-        </button>
-                                </h2>
-                            </div>
 
-                            <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div className="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-                            </div>
+                {loading && <div><h3>Cargando pagina por favor espere...</h3></div>}
+                {!loading && curso && clases && archivos && (<React.Fragment>
+                    <div className="row">
+                        <div className="col-md-8 col-12">
+                            <nav aria-label="breadcrumb" >
+                                <ol className="breadcrumb oscuro">
+                                    <li className="breadcrumb-item"><Link to="/Home" >Cursos</Link></li>
+                                    <li className="breadcrumb-item active texto-blanco" aria-current="page">{curso}</li>
+                                </ol>
+                            </nav>
+                            <ClasesList clases={clases} />
                         </div>
-                        <div className="card">
-                            <div className="card-header" id="headingTwo">
-                                <h2 className="mb-0">
-                                    <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Clase 2
-        </button>
-                                </h2>
-                            </div>
-                            <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                <div className="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-header" id="headingThree">
-                                <h2 className="mb-0">
-                                    <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                       Clase 3
-        </button>
-                                </h2>
-                            </div>
-                            <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div className="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
+                        <div className="col-12 col-md-4">
+                            <div className="row">
+                                <ArchivosRecientes archivos={archivos} />
+                                <Biblioteca />
                             </div>
                         </div>
                     </div>
-
                 </React.Fragment>)}
-                <UserList users={users} />
+
             </div>
         );
     }
 }
 
-const UserList = ({ users }) => (
-    <ul>
-        {users.map(user => (
-            <li key={user.uid}>
-                <span>
-                    <strong>ID:</strong> {user.uid}
-                </span>
-                <span>
-                    <strong>E-Mail:</strong> {user.email}
-                </span>
-                <span>
-                    <strong>Username:</strong> {user.username}
-                </span>
-            </li>
+
+
+const ClasesList = ({ clases }) => (
+    <div className="accordion" id="accordionExample">
+        {clases.map((clase, i) => (
+            <div className="card" key={i}>
+                <div className="card-header " id={"heading" + i}>
+
+                    <h2 className="mb-0">
+                        <button className={"btn btn-link " + estadoHayTareaCollapsed(clase.tarea)} type="button" data-toggle="collapse" data-target={"#collapse" + i} aria-expanded={clase.tarea} aria-controls={"collapse" + i}>
+                            {estadoHayTarea(clase.tarea, i)}
+                        </button>
+                    </h2>
+
+                </div>
+                <div id={"collapse" + i} className={"collapse " + estadoHayTareaShow(clase.tarea)} aria-labelledby={"heading" + i} data-parent="#accordionExample">
+                    <div className="card-body">
+                        <ComunicadosList comunicados={
+                            comunicados(clase.comunicados)
+                        } />
+                        <ArchivosList archivos={archivos(clase.archivos)} />
+                    </div>
+                </div>
+            </div>
         ))}
+    </div>
+);
+function comunicados(comunicados) {
+    return comunicados !== undefined ? comunicados : ["no hay mensajes en esta clase"];
+}
+
+const ComunicadosList = ({ comunicados }) => (
+    <ul className="list-group list-group-flush">
+        {
+            comunicados.map((comunicado, i) => (<li className="list-group-item" key={i}>{comunicado}</li>))
+        }
     </ul>
 );
+
+
+function archivos(archivos) {
+    return archivos !== undefined ? archivos : [{ nombre: "no hay archivos en esta clase" }];
+}
+
+
+
+const ArchivosList = ({ archivos }) => (
+    <ul className="list-group list-group-flush">
+        {
+            archivos.map((archivo, i) => (archivo.nombre !== "no hay archivos en esta clase" ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <li className="list-group-item" key={i}>{archivo.nombre}</li>))
+        }
+    </ul>
+);
+
+function estadoHayTarea(estado, i) {
+    return estado ? (<div className="naranja-texto">Clase {i + 1} HAY TAREAS PENDIENTES!</div>) : (<div> Clase {i + 1} estas al dia con las tareas.</div>);
+}
+function estadoHayTareaCollapsed(estado) {
+    return estado ? "" : "collapsed";
+}
+function estadoHayTareaShow(estado) {
+    return estado ? "show" : "";
+}
 
 export default withFirebase(CursoPage);
 

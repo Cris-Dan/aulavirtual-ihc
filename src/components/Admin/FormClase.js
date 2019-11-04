@@ -20,8 +20,8 @@ class ClaseFormBase extends Component {
     this.props.firebase
       .clases()
       .push({
-        curso,
-        clase: [numero, seccion, comunicado]
+        curso: curso,
+        clase: [{ tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false },]
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });

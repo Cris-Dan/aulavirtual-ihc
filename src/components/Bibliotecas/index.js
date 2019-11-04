@@ -6,12 +6,15 @@ const Biblioteca = () => (
             <div className="card-header oscuro">
                 <h2 className="texto-claro">Biblioteca Virtual</h2>
             </div>
-            <div className="card-body text-dark">
+            <div className="card-body text-dark ">
 
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item naranja-texto"><i className="icon-file-pdf"></i> Verificacion y validacion.pdf</li>
-                    <li className="list-group-item naranja-texto"><i className="icon-file-zip"></i> LibreriaGLUT.rar</li>
-                    <li className="list-group-item naranja-texto"><i className="icon-file-word"></i> Formato para el proyecto.docx</li>
+                <ul className="list-group list-group-flush ">
+                    <li className="list-group-item naranja-texto"><a href="http://sisbib.unmsm.edu.pe/m_recursos/recursos_suscripcion.html" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Revistas Científicas</a></li>
+                    <li className="list-group-item naranja-texto"><a href="http://sisbib.unmsm.edu.pe/m_catalogo/catalogos.html" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Catálogo Electrónico</a></li>
+                    <li className="list-group-item naranja-texto"><a href="http://sisbib.unmsm.edu.pe/m_recursos/repositorios.html" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Repositorio Digital UNMSM</a></li>
+                    <li className="list-group-item naranja-texto"><a href="http://revistasinvestigacion.unmsm.edu.pe/" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Revistas de Investigación</a></li>
+                    <li className="list-group-item naranja-texto"><a href="http://revistasinvestigacion.unmsm.edu.pe/index.php/sistem" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Revista RISI</a></li>
+                    <li className="list-group-item naranja-texto"> <a href="http://bvcyt.concytec.gob.pe/" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Biblioteca CONCYTEC</a></li>
                 </ul>
             </div>
         </div>
