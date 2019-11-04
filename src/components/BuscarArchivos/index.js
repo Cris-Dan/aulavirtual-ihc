@@ -64,13 +64,13 @@ class AdminPage extends Component {
 
                     </div>
                     <div className="col-12 col-md-8 mb-3">
-                    <div class="input-group flex-nowrap">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping"><i className="material-icons buscar">search</i></span>
+                    <div className="input-group flex-nowrap">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text" id="addon-wrapping"><i className="material-icons buscar">search</i></span>
                       </div>
                       <input type="text"  name="busqueda"
                   value={busqueda}  onChange={this.onChange}
-                  class="form-control largo" placeholder="Ingrese el nombre del archivo" aria-label="Username" aria-describedby="addon-wrapping"/>
+                  className="form-control largo" placeholder="Ingrese el nombre del archivo" aria-label="Username" aria-describedby="addon-wrapping"/>
                     </div>
                     </div>
 
@@ -111,11 +111,11 @@ const BuscarArchivos = () => (
 
             </div>
             <div className="col-12">
-            <div class="input-group flex-nowrap">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="addon-wrapping"><i className="material-icons buscar">search</i></span>
+            <div className="input-group flex-nowrap">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="addon-wrapping"><i className="material-icons buscar">search</i></span>
               </div>
-              <input type="text" class="form-control largo" placeholder="Ingrese el nombre del archivo" aria-label="Username" aria-describedby="addon-wrapping"/>
+              <input type="text" className="form-control largo" placeholder="Ingrese el nombre del archivo" aria-label="Username" aria-describedby="addon-wrapping"/>
             </div>
             </div>
         </div>

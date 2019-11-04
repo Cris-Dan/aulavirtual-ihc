@@ -2,7 +2,7 @@ import React from 'react';
 import './CursoCard.css';
 
 function estadoHayTarea(estado) {
-    return estado ? (<p className="naranja-texto">HAY TAREAS PENDIENTES!</p>) : (<p className="azul-oscuro-texto">No hay tareas pendientes.</p>);
+    return estado ? (<p className="naranja-texto">HAY TAREAS PENDIENTES! 🚨</p>) : (<p className="azul-oscuro-texto">No hay tareas pendientes.</p>);
 }
 function estadoHayTareaColor(estado) {
     return estado ? "card-fondo-cutre2" : "card-fondo-cutre";

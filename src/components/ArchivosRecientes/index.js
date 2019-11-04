@@ -10,7 +10,7 @@ const ArchivosRecientes = ({ archivos }) => (
         <div className="card border-dark mb-3" >
             <div className="card-header oscuro">
                 <h4 className="texto-claro">Archivos Recientes</h4>
-                <buscarForm /></div>
+                </div>
             <div className="card-body text-dark">
                 <ul className="list-group list-group-flush">
                     {archivos.reverse().slice(0, 5).map((archivo, i) => (

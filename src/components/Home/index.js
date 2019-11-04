@@ -56,24 +56,41 @@ class HomePage extends Component {
     const { users, loading, archivos } = this.state;
 
     return (
-      <div className="container margen">
-        {loading && <div><h3>Cargando pagina por favor espere...</h3></div>}
-        {!loading && users && archivos && (<React.Fragment>
-          <div className="row">
-            <div className="col-12 col-md-8">
-              <UserList users={users} />
+      <div>
 
-            </div>
-            <div className="col-12 col-md-4">
-              <div className="row">
-                <ArchivosRecientes archivos={archivos} />
-                <Biblioteca />
+        <div className=" img-alto mb-3">
+          <div className="container margen2 ">
+            <div className="row">
+              <div className="col-12">
+                <h2 className="margen2 texto-claro ">BIENVENIDO AL AULA VIRTUAL</h2>
               </div>
+              < div className="col-12">
+                <p className="texto-claro">aula virtual semestre 2019-2</p>
+              </div>
+
+
             </div>
           </div>
-        </React.Fragment>)}
 
+        </div>
+        <div className="container ">
+          {loading && <div><h3>Cargando pagina por favor espere...</h3></div>}
+          {!loading && users && archivos && (<React.Fragment>
+            <div className="row">
+              <div className="col-12 col-md-8">
+                <UserList users={users} />
 
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="row">
+                  <ArchivosRecientes archivos={archivos} />
+                  <Biblioteca />
+                </div>
+              </div>
+            </div>
+          </React.Fragment>)}
+
+        </div>
       </div>);
   }
 }

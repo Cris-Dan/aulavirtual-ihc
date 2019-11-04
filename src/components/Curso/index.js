@@ -37,6 +37,9 @@ class CursoPage extends Component {
                     loading: false,
                 });
                 console.log(this.state.clases);
+
+
+
             });
         });
 
@@ -63,8 +66,12 @@ class CursoPage extends Component {
     }
 
     render() {
+
         const { clases, curso, loading, archivos } = this.state;
         console.log(curso);
+
+
+
         return (
             <div className="container margen">
 
@@ -115,6 +122,7 @@ const ClasesList = ({ clases }) => (
                             comunicados(clase.comunicados)
                         } />
                         <ArchivosList archivos={archivos(clase.archivos)} />
+                        <TareasList tareas={tareas(clase.tareas)} />
                     </div>
                 </div>
             </div>
@@ -128,7 +136,7 @@ function comunicados(comunicados) {
 const ComunicadosList = ({ comunicados }) => (
     <ul className="list-group list-group-flush">
         {
-            comunicados.map((comunicado, i) => (<li className="list-group-item" key={i}>{comunicado}</li>))
+            comunicados.map((comunicado, i) => (<li className="list-group-item" key={i}>✉ {comunicado}</li>))
         }
     </ul>
 );
@@ -143,13 +151,38 @@ function archivos(archivos) {
 const ArchivosList = ({ archivos }) => (
     <ul className="list-group list-group-flush">
         {
-            archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <li className="list-group-item" key={i}>{archivo.nombre}</li>))
+            archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <li className="list-group-item" key={i}> {archivo.nombre}</li>))
+        }
+    </ul>
+);
+
+function tareas(tareas) {
+    return tareas !== undefined ? tareas : ["No hay Tareas en esta clase."];
+}
+
+const TareasList = ({ tareas }) => (
+    <ul className="list-group list-group-flush">
+        {
+            tareas.map((tarea, i) => (
+                tarea === "No hay Tareas en esta clase." ? (<div></div>) : (<li className="list-group-item" key={i}>
+                    <p>🚨 {tarea}</p>
+                    <div className="input-group">
+                        <div className="custom-file">
+                            <input type="file" className="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" />
+                            <label className="custom-file-label" htmlFor="inputGroupFile04">Elije un archivo</label>
+                        </div>
+                        <div className="input-group-append">
+                            <button className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
+                        </div>
+                    </div>
+                </li>)
+            ))
         }
     </ul>
 );
 
 function estadoHayTarea(estado, i) {
-    return estado ? (<div className="naranja-texto">Clase {i + 1} HAY TAREAS PENDIENTES!</div>) : (<div> Clase {i + 1} estas al dia con las tareas.</div>);
+    return estado ? (<div className="naranja-texto">Clase {i + 1} HAY TAREAS PENDIENTES! 🚨</div>) : (<div> Clase {i + 1} estas al dia con las tareas.</div>);
 }
 function estadoHayTareaCollapsed(estado) {
     return estado ? "" : "collapsed";
