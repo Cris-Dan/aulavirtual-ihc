@@ -122,7 +122,7 @@ const ClasesList = ({ clases }) => (
     </div>
 );
 function comunicados(comunicados) {
-    return comunicados !== undefined ? comunicados : ["no hay mensajes en esta clase"];
+    return comunicados !== undefined ? comunicados : ["No hay mensajes en esta clase."];
 }
 
 const ComunicadosList = ({ comunicados }) => (
@@ -135,7 +135,7 @@ const ComunicadosList = ({ comunicados }) => (
 
 
 function archivos(archivos) {
-    return archivos !== undefined ? archivos : [{ nombre: "no hay archivos en esta clase" }];
+    return archivos !== undefined ? archivos : [{ nombre: "No hay archivos en esta clase." }];
 }
 
 
@@ -143,7 +143,7 @@ function archivos(archivos) {
 const ArchivosList = ({ archivos }) => (
     <ul className="list-group list-group-flush">
         {
-            archivos.map((archivo, i) => (archivo.nombre !== "no hay archivos en esta clase" ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <li className="list-group-item" key={i}>{archivo.nombre}</li>))
+            archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <li className="list-group-item" key={i}>{archivo.nombre}</li>))
         }
     </ul>
 );

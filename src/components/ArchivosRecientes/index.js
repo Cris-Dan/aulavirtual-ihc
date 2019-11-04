@@ -9,8 +9,8 @@ const ArchivosRecientes = ({ archivos }) => (
 
         <div className="card border-dark mb-3" >
             <div className="card-header oscuro">
-                <h2 className="texto-claro">Archivos Recientes</h2>
-                <SignInForm /></div>
+                <h4 className="texto-claro">Archivos Recientes</h4>
+                <buscarForm /></div>
             <div className="card-body text-dark">
                 <ul className="list-group list-group-flush">
                     {archivos.reverse().slice(0, 5).map((archivo, i) => (
@@ -71,11 +71,11 @@ class SignInFormBase extends Component {
 
 
 
-const SignInForm = compose(
+const buscarForm = compose(
     withRouter,
     withFirebase,
 )(SignInFormBase);
 
 export default ArchivosRecientes;
 
-export { SignInForm };
+export { buscarForm as SignInForm };

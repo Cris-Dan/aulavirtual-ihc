@@ -35,7 +35,9 @@ const Navigation = () => (
 
 const NavigationAuth = () => (
   <ul>
-
+    <li className="nav-item">
+      <Link className="nav-link texto-claro" to={ROUTES.SEARCH}><i className="material-icons naranja">search</i>Buscar archivo</Link>
+    </li>
     <li className="nav-item">
       <Link className="nav-link texto-claro" to={ROUTES.HOME}><i className="material-icons naranja">book</i>Cursos</Link>
     </li>

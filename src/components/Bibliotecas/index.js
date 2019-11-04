@@ -4,7 +4,7 @@ const Biblioteca = () => (
     <div className="container">
         <div className="card border-dark mb-3" >
             <div className="card-header oscuro">
-                <h2 className="texto-claro">Biblioteca Virtual</h2>
+                <h4 className="texto-claro">Biblioteca Virtual</h4>
             </div>
             <div className="card-body text-dark ">
 
