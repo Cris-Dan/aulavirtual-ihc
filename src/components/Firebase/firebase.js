@@ -54,6 +54,8 @@ class Firebase {
 
   clases = () => this.db.ref('clases');
 
+
+
   //*** Archivo API ***
 
   archivo = uid => this.db.ref(`archivos/${uid}`);

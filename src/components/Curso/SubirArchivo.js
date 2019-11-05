@@ -8,7 +8,8 @@ const INITIAL_STATE = {
     uploadValue: 0,
     cursoId: '',
     clases: ' ',
-    tareasEntregadas: []
+    tareasEntregadas: [],
+    claseActual: null
 };
 
 class ArchivoFormBase extends Component {
@@ -30,14 +31,17 @@ class ArchivoFormBase extends Component {
             console.log("la clase " + claseObject);
             this.setState({ clases: claseObject });
             console.log(`clases/${claseObject}/clase/${numero}`);
+            firebase.database().ref(`clases/${claseObject}`).on('value', snapshot => {
+                this.setState({ claseActual: snapshot.val().clase[numero] });
+
+            });
             firebase.database().ref(`clases/${claseObject}/clase/${numero}`).on('value', snapshot => {
                 this.setState({ tareasEntregadas: snapshot.val().tareasEntregadas });
-    
+
             });
 
 
         });
-        
 
 
     }
@@ -47,6 +51,7 @@ class ArchivoFormBase extends Component {
         const numeroClase = this.props.numero;
         const numero = this.props.numero;
         const clases = this.state.clases;
+        firebase.database().ref(`clases/${clases}`).off();
         firebase.database().ref(`cursos/${cursoId2}`).off();
         firebase.database().ref(`clases/${clases}/clase/${numero}`).off();
     }
@@ -59,6 +64,7 @@ class ArchivoFormBase extends Component {
         const cursoId2 = this.props.curso;
         const numero = this.props.numero;
         const clases = this.state.clases;
+        const claseActual = this.state.claseActual;
         const tareasEntregadas = this.state.tareasEntregadas;
         console.log("what: " + cursoId2 + " numero de clase " + numero);
 
@@ -80,12 +86,22 @@ class ArchivoFormBase extends Component {
                     curso: cursoId2,
                     clase: numero
                 });
+                if (tareasEntregadas != undefined) {
+                    tareasEntregadas.push({
+                        nombre: file.name,
+                        url: url,
+                    });
+                    firebase.database().ref(`clases/${clases}/clase/${numero}/tareasEntregadas`).set(tareasEntregadas);
+                }
 
-                tareasEntregadas.push({
-                    nombre: file.name,
-                    url: url,
-                });
-                firebase.database().ref(`clases/${clases}/clase/${numero}/tareasEntregadas`).set(tareasEntregadas);
+               
+                
+                    firebase.database().ref(`clases/${clases}/clase/${numero}/tareas`).set([
+                        "No hay Tareas en esta clase."
+                    ]);
+                
+
+                firebase.database().ref(`clases/${clases}/clase/${numero}/tarea`).set(false);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -99,6 +115,9 @@ class ArchivoFormBase extends Component {
         console.log("aca esta el curso: ");
         const cursoId = this.props.curso;
         const clases = this.state.clases;
+        const claseActual = this.state.claseActual;
+        console.log("aca");
+        console.log(claseActual);
         console.log(clases);
         return (
             <div className="input-group">

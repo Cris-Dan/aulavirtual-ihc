@@ -76,6 +76,7 @@ class AdminPage extends Component {
 
                 
                 <ArchivoList archivos={archivos}  busqueda={busqueda}/>
+                {console.log(archivos)}
               </div>
       </React.Fragment>)}
       </div>
@@ -89,6 +90,7 @@ class AdminPage extends Component {
 
 const ArchivoList = ({ archivos,busqueda}) => (      
             <div className="col-12 col-md-8">
+              
                 <ul>
                   {archivos.map((archivo,i) => (
                     archivo.nombre.toLowerCase().indexOf(busqueda.toLowerCase()) !== -1 ?

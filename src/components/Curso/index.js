@@ -26,7 +26,7 @@ class CursoPage extends Component {
     componentDidMount() {
         this.setState({ loading: true });
         this.setState({ cursoId: this.props.match.params.curso });
-
+        
         this.props.firebase.curso(this.props.match.params.curso).on('value', snapshot => {
             const cursoObject = snapshot.val().nombre;
             this.setState({
