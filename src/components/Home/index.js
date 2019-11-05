@@ -4,6 +4,7 @@ import { withFirebase } from '../Firebase';
 import CursoCard from '../CursoCard';
 import ArchivosRecientes from '../ArchivosRecientes';
 import Biblioteca from '../Bibliotecas';
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,7 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    
     this.setState({ loading: true });
 
     this.props.firebase.cursos().on('value', snapshot => {
@@ -111,6 +113,7 @@ const UserList = ({ users }) => (
 
 
 );
+
 
 export default withFirebase(HomePage);
 

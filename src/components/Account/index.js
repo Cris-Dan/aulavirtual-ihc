@@ -8,8 +8,8 @@ import { withAuthorization } from '../Session';
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
-      <div>
-        <h1>Account: {authUser.email}</h1>
+      <div className="container margen">
+        <h1>Cuenta: {authUser.email}</h1>
         <PasswordForgetForm />
         <PasswordChangeForm />
       </div>

@@ -127,7 +127,9 @@ const ClasesList = ({ clases, curso }) => (
                             comunicados(clase.comunicados)
                         } />
                         <ArchivosList archivos={archivos(clase.archivos)} />
+                        <TareasEntregadasList tareasEntregadas={archivos(clase.tareasEntregadas)} />
                         <TareasList tareas={tareas(clase.tareas)} curso={curso} />
+
                     </div>
                 </div>
             </div>
@@ -167,6 +169,28 @@ function tareas(tareas) {
     return tareas !== undefined ? tareas : ["No hay Tareas en esta clase."];
 }
 
+const TareasEntregadasList = ({ tareasEntregadas }) => (
+    <div >
+
+        <ul className="list-group list-group-flush">
+
+            {
+                tareasEntregadas.map((tareaEntregada, i) => (tareaEntregada.nombre !== "No hay archivos en esta clase." ? (
+                    <div>
+
+                        <li key={i} className="list-group-item ">
+                            <p>✔ tarea numero {i + 1} entregada: </p>
+                            <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a></li>
+                    </div>
+
+                ) :
+                    <div key={i} />
+                ))
+            }
+
+        </ul>
+    </div>
+);
 const TareasList = ({ tareas, curso }) => (
     <ul className="list-group list-group-flush">
         {console.log(curso)}
