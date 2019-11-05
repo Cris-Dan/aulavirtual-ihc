@@ -16,12 +16,19 @@ class ClaseFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { curso, numero, seccion, comunicado } = this.state;
+    const { curso } = this.state;
+    const claseTemp = {
+      tarea: false,
+      archivos: [{ nombre: "No hay archivos en esta clase." }],
+      tareas: ["No hay Tareas en esta clase."],
+      comunicados: ["No hay mensajes en esta clase."],
+      tareasEntregadas: [{ nombre: "No hay archivos en esta clase." }]
+    };
     this.props.firebase
       .clases()
       .push({
         curso: curso,
-        clase: [{ tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false }, { tarea: false },]
+        clase: [claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp, claseTemp,]
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });

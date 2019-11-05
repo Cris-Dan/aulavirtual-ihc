@@ -6,7 +6,8 @@ const HomePage = () => (
     <AuthUserContext.Consumer>
         {authUser => (
             <div >
-                <HomePageBase />
+                {console.log(authUser)}
+                <HomePageBase idUsuario={authUser} />
             </div>
         )}
     </AuthUserContext.Consumer>
