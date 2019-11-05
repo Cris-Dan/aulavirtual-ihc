@@ -6,7 +6,9 @@ const INITIAL_STATE = {
     url: '',
     error: null,
     uploadValue: 0,
-    cursoId: ''
+    cursoId: '',
+    clases: ' ',
+    tareasEntregadas: []
 };
 
 class ArchivoFormBase extends Component {
@@ -17,12 +19,36 @@ class ArchivoFormBase extends Component {
     }
 
     componentWillMount() {
-        this.setState({
-            cursoId: this.props.curso
+        const cursoId2 = this.props.curso;
+        const numeroClase = this.props.numero;
+        const numero = this.props.numero;
+        const clases = this.state.clases;
+
+
+        firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
+            const claseObject = snapshot.val().clases;
+            console.log("la clase " + claseObject);
+            this.setState({ clases: claseObject });
+            console.log(`clases/${claseObject}/clase/${numero}`);
+            firebase.database().ref(`clases/${claseObject}/clase/${numero}`).on('value', snapshot => {
+                this.setState({ tareasEntregadas: snapshot.val().tareasEntregadas });
+    
+            });
+
+
         });
+        
 
 
-        console.log(this.state.curso);
+    }
+
+    componentWillUnmount() {
+        const cursoId2 = this.props.curso;
+        const numeroClase = this.props.numero;
+        const numero = this.props.numero;
+        const clases = this.state.clases;
+        firebase.database().ref(`cursos/${cursoId2}`).off();
+        firebase.database().ref(`clases/${clases}/clase/${numero}`).off();
     }
 
     onSubmit = event => {
@@ -30,10 +56,11 @@ class ArchivoFormBase extends Component {
         const file = event.target.files[0];
         const storageRef = firebase.storage().ref(`archivos/${file.name}`);
         const task = storageRef.put(file);
-        this.setState({
-            cursoId: this.props.curso
-        });
-
+        const cursoId2 = this.props.curso;
+        const numero = this.props.numero;
+        const clases = this.state.clases;
+        const tareasEntregadas = this.state.tareasEntregadas;
+        console.log("what: " + cursoId2 + " numero de clase " + numero);
 
         console.log(task);
         task.on('state_changed', snapshot => {
@@ -50,8 +77,15 @@ class ArchivoFormBase extends Component {
                 firebase.database().ref('archivos').push({
                     nombre: file.name,
                     url: url,
-                   /* curso: this.props.curso*/
+                    curso: cursoId2,
+                    clase: numero
                 });
+
+                tareasEntregadas.push({
+                    nombre: file.name,
+                    url: url,
+                });
+                firebase.database().ref(`clases/${clases}/clase/${numero}/tareasEntregadas`).set(tareasEntregadas);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -61,20 +95,18 @@ class ArchivoFormBase extends Component {
         console.log("uwu");
     };
 
-    onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
-
     render() {
+        console.log("aca esta el curso: ");
+        const cursoId = this.props.curso;
+        const clases = this.state.clases;
+        console.log(clases);
         return (
-
             <div className="input-group">
-
                 <div className="row">
                     <div className="col-12">
                         <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" onChange={this.onSubmit} />
-                            <label className="custom-file-label" htmlFor="inputGroupFile04">Elije un archivo</label>
+                            <input type="file" id={cursoId} className="custom-file-input" aria-describedby="inputGroupFileAddon04" onChange={this.onSubmit} />
+                            <label className="custom-file-label" htmlFor={cursoId}>Elije un archivo</label>
                         </div>
                     </div>
                     <div className="col-12">
@@ -83,9 +115,8 @@ class ArchivoFormBase extends Component {
                     </div>
                 </div>
             </div>
-
         );
     }
 }
 
-export default withFirebase(ArchivoFormBase);
+export default ArchivoFormBase;

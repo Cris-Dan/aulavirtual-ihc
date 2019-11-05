@@ -128,7 +128,7 @@ const ClasesList = ({ clases, curso }) => (
                         } />
                         <ArchivosList archivos={archivos(clase.archivos)} />
                         <TareasEntregadasList tareasEntregadas={archivos(clase.tareasEntregadas)} />
-                        <TareasList tareas={tareas(clase.tareas)} curso={curso} />
+                        <TareasList tareas={tareas(clase.tareas)} curso={curso} numero={i} />
 
                     </div>
                 </div>
@@ -170,35 +170,35 @@ function tareas(tareas) {
 }
 
 const TareasEntregadasList = ({ tareasEntregadas }) => (
-    <div >
 
-        <ul className="list-group list-group-flush">
 
-            {
-                tareasEntregadas.map((tareaEntregada, i) => (tareaEntregada.nombre !== "No hay archivos en esta clase." ? (
-                    <div>
+    <ul className="list-group list-group-flush">
 
-                        <li key={i} className="list-group-item ">
-                            <p>✔ tarea numero {i + 1} entregada: </p>
-                            <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a></li>
-                    </div>
+        {
+            tareasEntregadas.map((tareaEntregada, i) => (tareaEntregada.nombre !== "No hay archivos en esta clase." ? (
+                <div>
 
-                ) :
-                    <div key={i} />
-                ))
-            }
+                    <li key={i} className="list-group-item ">
+                        <p>✔ tarea numero {i + 1} entregada: </p>
+                        <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a></li>
+                </div>
 
-        </ul>
-    </div>
+            ) :
+                <div key={i} />
+            ))
+        }
+
+    </ul>
+
 );
-const TareasList = ({ tareas, curso }) => (
+const TareasList = ({ tareas, curso, numero }) => (
     <ul className="list-group list-group-flush">
         {console.log(curso)}
         {
             tareas.map((tarea, i) => (
                 tarea === "No hay Tareas en esta clase." ? (<div key={i}></div>) : (<li className="list-group-item" key={i}>
                     <p>🚨 {tarea}</p>
-                    <SubirArchivo curso={curso} />
+                    <SubirArchivo curso={curso} numero={numero} />
                 </li>)
             ))
         }
