@@ -10,9 +10,9 @@ const Navigation = () => (
   <div className="navfijo">
     <nav className="navbar navbar-expand-lg navbar-light oscuro ">
       <div className="container">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to={ROUTES.HOME}>
           <img src="logo-fisi-header-2.png" className="imagen-logo" alt="" />
-        </a>
+        </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon naranja-texto">  <i className="material-icons">dehaze</i></span>
         </button>

@@ -4,6 +4,7 @@ import { withFirebase } from '../Firebase';
 import ArchivosRecientes from '../ArchivosRecientes';
 import Biblioteca from '../Bibliotecas';
 import './Curso.css';
+import SubirArchivo from './SubirArchivo';
 class CursoPage extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +19,10 @@ class CursoPage extends Component {
             claseId: null
         };
     }
-
+    onSubmit = event => {
+        console.log("uwu");
+        event.preventDefault();
+    };
     componentDidMount() {
         this.setState({ loading: true });
         this.setState({ cursoId: this.props.match.params.curso });
@@ -85,7 +89,7 @@ class CursoPage extends Component {
                                     <li className="breadcrumb-item active texto-blanco" aria-current="page">{curso}</li>
                                 </ol>
                             </nav>
-                            <ClasesList clases={clases} />
+                            <ClasesList clases={clases} onSubmit={this.onSubmit} curso={this.state.cursoId} />
                         </div>
                         <div className="col-12 col-md-4">
                             <div className="row">
@@ -103,7 +107,7 @@ class CursoPage extends Component {
 
 
 
-const ClasesList = ({ clases }) => (
+const ClasesList = ({ clases, curso }) => (
     <div className="accordion" id="accordionExample">
         {clases.map((clase, i) => (
             <div className="card" key={i}>
@@ -116,27 +120,30 @@ const ClasesList = ({ clases }) => (
                     </h2>
 
                 </div>
+                {console.log(curso)}
                 <div id={"collapse" + i} className={"collapse " + estadoHayTareaShow(clase.tarea)} aria-labelledby={"heading" + i} data-parent="#accordionExample">
                     <div className="card-body">
                         <ComunicadosList comunicados={
                             comunicados(clase.comunicados)
                         } />
                         <ArchivosList archivos={archivos(clase.archivos)} />
-                        <TareasList tareas={tareas(clase.tareas)} />
+                        <TareasList tareas={tareas(clase.tareas)} curso={curso} />
                     </div>
                 </div>
             </div>
         ))}
     </div>
 );
+
 function comunicados(comunicados) {
     return comunicados !== undefined ? comunicados : ["No hay mensajes en esta clase."];
 }
-
 const ComunicadosList = ({ comunicados }) => (
     <ul className="list-group list-group-flush">
         {
-            comunicados.map((comunicado, i) => (<li className="list-group-item" key={i}>✉ {comunicado}</li>))
+            comunicados.map((comunicado, i) => (comunicado === "No hay mensajes en esta clase." ? <div key={i}></div> :
+                <li className="list-group-item" key={i}>✉ {comunicado}</li>
+            ))
         }
     </ul>
 );
@@ -151,7 +158,7 @@ function archivos(archivos) {
 const ArchivosList = ({ archivos }) => (
     <ul className="list-group list-group-flush">
         {
-            archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <li className="list-group-item" key={i}> {archivo.nombre}</li>))
+            archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <div key={i} />))
         }
     </ul>
 );
@@ -160,24 +167,18 @@ function tareas(tareas) {
     return tareas !== undefined ? tareas : ["No hay Tareas en esta clase."];
 }
 
-const TareasList = ({ tareas }) => (
+const TareasList = ({ tareas, curso }) => (
     <ul className="list-group list-group-flush">
+        {console.log(curso)}
         {
             tareas.map((tarea, i) => (
-                tarea === "No hay Tareas en esta clase." ? (<div></div>) : (<li className="list-group-item" key={i}>
+                tarea === "No hay Tareas en esta clase." ? (<div key={i}></div>) : (<li className="list-group-item" key={i}>
                     <p>🚨 {tarea}</p>
-                    <div className="input-group">
-                        <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" />
-                            <label className="custom-file-label" htmlFor="inputGroupFile04">Elije un archivo</label>
-                        </div>
-                        <div className="input-group-append">
-                            <button className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
-                        </div>
-                    </div>
+                    <SubirArchivo curso={curso} />
                 </li>)
             ))
         }
+
     </ul>
 );
 
