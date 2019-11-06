@@ -110,20 +110,24 @@ class ArchivoFormBase extends Component {
         console.log(claseActual);
         console.log(clases);
         return (
-            <div className="input-group">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="custom-file">
-                            <input type="file" id={cursoId} className="custom-file-input" aria-describedby="inputGroupFileAddon04" onChange={this.onSubmit} />
-                            <label className="custom-file-label" htmlFor={cursoId}>Elije un archivo</label>
+            <div>
+                <label htmlFor={cursoId}> Suba un nuevo archivo 📤</label>
+                <div className="input-group">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="custom-file">
+                                <input type="file" id={cursoId} className="custom-file-input" aria-describedby="inputGroupFileAddon04" onChange={this.onSubmit} />
+                                <label className="custom-file-label" htmlhtmlFor={cursoId}>Elije un archivo</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-12">
-                        <progress className="barra-carga" value={this.state.uploadValue} max='100'>
-                            {this.state.uploadValue} % </progress>
+                        <div className="col-12">
+                            <progress className="barra-carga" value={this.state.uploadValue} max='100'>
+                                {this.state.uploadValue} % </progress>
+                        </div>
                     </div>
                 </div>
             </div>
+
         );
     }
 }

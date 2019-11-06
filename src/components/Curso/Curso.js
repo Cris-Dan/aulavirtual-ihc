@@ -5,6 +5,8 @@ import ArchivosRecientes from '../ArchivosRecientes';
 import Biblioteca from '../Bibliotecas';
 import './Curso.css';
 import SubirArchivo from './SubirArchivoProf';
+import SubirComunicado from './SubirComunicado';
+import SubirTarea from './SubirTarea';
 class CursoPage extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +25,7 @@ class CursoPage extends Component {
         console.log("uwu");
         event.preventDefault();
     };
-    
+
     componentDidMount() {
         this.setState({ loading: true });
         this.setState({ cursoId: this.props.cursoId });
@@ -126,7 +128,7 @@ const ClasesList = ({ clases, curso }) => (
                     <div className="card-body">
                         <ComunicadosList comunicados={
                             comunicados(clase.comunicados)
-                        } />
+                        } curso={curso} numero={i} />
 
                         <ArchivosList archivos={archivos(clase.archivos)} curso={curso} numero={i} />
 
@@ -143,14 +145,25 @@ const ClasesList = ({ clases, curso }) => (
 function comunicados(comunicados) {
     return comunicados !== undefined ? comunicados : ["No hay mensajes en esta clase."];
 }
-const ComunicadosList = ({ comunicados }) => (
-    <ul className="list-group list-group-flush">
-        {
-            comunicados.map((comunicado, i) => (comunicado === "No hay mensajes en esta clase." ? <div key={i}></div> :
-                <li className="list-group-item" key={i}>✉ {comunicado}</li>
-            ))
-        }
-    </ul>
+const ComunicadosList = ({ comunicados, curso, numero }) => (
+    <div className="card mb-3">
+        <div className="card-header">
+            Archivos
+  </div>
+        <div className="card-body">
+            <ul className="list-group list-group-flush">
+                {
+                    comunicados.map((comunicado, i) => (comunicado === "No hay mensajes en esta clase." ? <div key={i}></div> :
+                        <li className="list-group-item" key={i}>✉ {comunicado}</li>
+                    ))
+                }
+
+            </ul>
+        </div>
+        <div className="card-footer">
+            <SubirComunicado curso={curso} numero={numero} />
+        </div>
+    </div>
 );
 
 
@@ -161,58 +174,54 @@ function archivos(archivos) {
 
 
 const ArchivosList = ({ archivos, curso, numero }) => (
-    <ul className="list-group list-group-flush">
-        {
-            archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <div key={i} />))
-        }
-        < li className="list-group-item" >
+    <div className="card mb-3">
+        <div className="card-header">
+            Archivos
+  </div>
+        <div className="card-body">
+            <ul className="list-group list-group-flush">
+                {
+                    archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <div key={i} />))
+                }
 
-            <p>📥 suba un nuevo archivo</p>
+            </ul>
+        </div>
+        <div className="card-footer">
+
             <SubirArchivo curso={curso} numero={numero} />
-        </li>
-    </ul>
+        </div>
+    </div>
+
 );
 
 function tareas(tareas) {
     return tareas !== undefined ? tareas : ["No hay Tareas en esta clase."];
 }
 
-const TareasEntregadasList = ({ tareasEntregadas }) => (
-
-
-    <ul className="list-group list-group-flush">
-
-        {
-            tareasEntregadas.map((tareaEntregada, i) => (tareaEntregada.nombre !== "No hay archivos en esta clase." ? (
-                <div>
-
-                    <li key={i} className="list-group-item ">
-                        <p>✔ tarea numero {i + 1} entregada: </p>
-                        <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a></li>
-                </div>
-
-            ) :
-                <div key={i} />
-            ))
-        }
-
-    </ul>
-
-);
 const TareasList = ({ tareas, curso, numero }) => (
-    <ul className="list-group list-group-flush">
-        {console.log(curso)}
-        {
-            tareas.map((tarea, i) => (
-                tarea === "No hay Tareas en esta clase." ?
-                    (<div key={i}></div>) :
-                    (<li className="list-group-item" key={i}>
-                        📌 {tarea}
-                    </li>)
-            ))
-        }
+    <div className="card mb-3">
+        <div className="card-header">
+            Tareas
+  </div>
+        <div className="card-body">
+            <ul className="list-group list-group-flush mb-3">
+                {console.log(curso)}
+                {
+                    tareas.map((tarea, i) => (
+                        tarea === "No hay Tareas en esta clase." ?
+                            (<div key={i}></div>) :
+                            (<li className="list-group-item" key={i}>
+                                📌 {tarea}
+                            </li>)
+                    ))
+                }
 
-    </ul >
+            </ul >
+        </div>
+        <div className="card-footer">
+            <SubirTarea curso={curso} numero={numero} />
+        </div>
+    </div>
 );
 
 function estadoHayTareaCollapsed(estado) {

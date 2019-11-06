@@ -124,7 +124,7 @@ class ArchivoFormBase extends Component {
                     <div className="col-12">
                         <div className="custom-file">
                             <input type="file" id={cursoId} className="custom-file-input" aria-describedby="inputGroupFileAddon04" onChange={this.onSubmit} />
-                            <label className="custom-file-label" htmlFor={cursoId}>Elije un archivo</label>
+                            <label className="custom-file-label" htmlhtmlFor={cursoId}>Elije un archivo</label>
                         </div>
                     </div>
                     <div className="col-12">
