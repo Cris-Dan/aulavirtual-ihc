@@ -198,7 +198,7 @@ const TareasList = ({ tareas, curso, numero }) => (
         {
             tareas.map((tarea, i) => (
                 tarea === "No hay Tareas en esta clase." ? (<div key={i}></div>) : (<li className="list-group-item" key={i}>
-                    <p>🚨 {tarea}</p>
+                    <p>📥 {tarea} 🚨</p>
                     <SubirArchivo curso={curso} numero={numero} />
                 </li>)
             ))

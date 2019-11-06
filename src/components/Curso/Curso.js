@@ -4,7 +4,7 @@ import { withFirebase } from '../Firebase';
 import ArchivosRecientes from '../ArchivosRecientes';
 import Biblioteca from '../Bibliotecas';
 import './Curso.css';
-import SubirArchivo from './SubirArchivo';
+import SubirArchivo from './SubirArchivoProf';
 class CursoPage extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +23,7 @@ class CursoPage extends Component {
         console.log("uwu");
         event.preventDefault();
     };
+    
     componentDidMount() {
         this.setState({ loading: true });
         this.setState({ cursoId: this.props.cursoId });
@@ -115,7 +116,7 @@ const ClasesList = ({ clases, curso }) => (
 
                     <h2 className="mb-0">
                         <button className={"btn btn-link " + estadoHayTareaCollapsed(clase.tarea)} type="button" data-toggle="collapse" data-target={"#collapse" + i} aria-expanded={clase.tarea} aria-controls={"collapse" + i}>
-                            {estadoHayTarea(clase.tarea, i)}
+                            <div> Clase {i + 1}</div>
                         </button>
                     </h2>
 
@@ -126,9 +127,11 @@ const ClasesList = ({ clases, curso }) => (
                         <ComunicadosList comunicados={
                             comunicados(clase.comunicados)
                         } />
-                        <ArchivosList archivos={archivos(clase.archivos)} />
-                        <TareasEntregadasList tareasEntregadas={archivos(clase.tareasEntregadas)} />
+
+                        <ArchivosList archivos={archivos(clase.archivos)} curso={curso} numero={i} />
+
                         <TareasList tareas={tareas(clase.tareas)} curso={curso} numero={i} />
+
 
                     </div>
                 </div>
@@ -157,11 +160,16 @@ function archivos(archivos) {
 
 
 
-const ArchivosList = ({ archivos }) => (
+const ArchivosList = ({ archivos, curso, numero }) => (
     <ul className="list-group list-group-flush">
         {
             archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <div key={i} />))
         }
+        < li className="list-group-item" >
+
+            <p>📥 suba un nuevo archivo</p>
+            <SubirArchivo curso={curso} numero={numero} />
+        </li>
     </ul>
 );
 
@@ -196,19 +204,17 @@ const TareasList = ({ tareas, curso, numero }) => (
         {console.log(curso)}
         {
             tareas.map((tarea, i) => (
-                tarea === "No hay Tareas en esta clase." ? (<div key={i}></div>) : (<li className="list-group-item" key={i}>
-                    🚨 {tarea}
-                    
-                </li>)
+                tarea === "No hay Tareas en esta clase." ?
+                    (<div key={i}></div>) :
+                    (<li className="list-group-item" key={i}>
+                        📌 {tarea}
+                    </li>)
             ))
         }
 
-    </ul>
+    </ul >
 );
 
-function estadoHayTarea(estado, i) {
-    return estado ? (<div className="naranja-texto">Clase {i + 1} HAY TAREAS PENDIENTES! 🚨</div>) : (<div> Clase {i + 1} estas al dia con las tareas.</div>);
-}
 function estadoHayTareaCollapsed(estado) {
     return estado ? "" : "collapsed";
 }

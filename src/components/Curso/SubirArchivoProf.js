@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     uploadValue: 0,
     cursoId: '',
     clases: ' ',
-    tareasEntregadas: [],
+    archivos: [],
     claseActual: null
 };
 
@@ -35,7 +35,7 @@ class ArchivoFormBase extends Component {
 
             });
             firebase.database().ref(`clases/${claseObject}/clase/${numero}`).on('value', snapshot => {
-                this.setState({ tareasEntregadas: snapshot.val().tareasEntregadas });
+                this.setState({ archivos: snapshot.val().archivos });
 
             });
 
@@ -64,7 +64,7 @@ class ArchivoFormBase extends Component {
         const numero = this.props.numero;
         const clases = this.state.clases;
         const claseActual = this.state.claseActual;
-        const tareasEntregadas = this.state.tareasEntregadas;
+        const archivos = this.state.archivos;
         console.log("what: " + cursoId2 + " numero de clase " + numero);
 
         console.log(task);
@@ -85,22 +85,13 @@ class ArchivoFormBase extends Component {
                     curso: cursoId2,
                     clase: numero
                 });
-                if (tareasEntregadas != undefined) {
-                    tareasEntregadas.push({
+                if (archivos != undefined) {
+                    archivos.push({
                         nombre: file.name,
                         url: url,
                     });
-                    firebase.database().ref(`clases/${clases}/clase/${numero}/tareasEntregadas`).set(tareasEntregadas);
+                    firebase.database().ref(`clases/${clases}/clase/${numero}/archivos`).set(archivos);
                 }
-
-               
-                
-                    firebase.database().ref(`clases/${clases}/clase/${numero}/tareas`).set([
-                        "No hay Tareas en esta clase."
-                    ]);
-                
-
-                firebase.database().ref(`clases/${clases}/clase/${numero}/tarea`).set(false);
             }).catch(function (error) {
                 console.log(error);
             });
