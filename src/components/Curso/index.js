@@ -24,10 +24,11 @@ class CursoPage extends Component {
         event.preventDefault();
     };
     componentDidMount() {
+        console.log("aca lo recibi: " + this.props.cursoId);
         this.setState({ loading: true });
-        this.setState({ cursoId: this.props.match.params.curso });
-        
-        this.props.firebase.curso(this.props.match.params.curso).on('value', snapshot => {
+        this.setState({ cursoId: this.props.cursoId });
+
+        this.props.firebase.curso(this.props.cursoId).on('value', snapshot => {
             const cursoObject = snapshot.val().nombre;
             this.setState({
                 curso: cursoObject,
@@ -65,7 +66,7 @@ class CursoPage extends Component {
 
     componentWillUnmount() {
         this.props.firebase.clase(this.state.claseId).off();
-        this.props.firebase.curso(this.props.match.params.curso).off();
+        this.props.firebase.curso(this.props.cursoId).off();
         this.props.firebase.archivos().off();
     }
 

@@ -10,7 +10,7 @@ import AdminPage from '../Admin';
 import BuscarArchivos from '../BuscarArchivos';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
-import CursoPage from '../Curso';
+import CursoPage from '../Curso/Autorizado';
 
 
 const App = () => (

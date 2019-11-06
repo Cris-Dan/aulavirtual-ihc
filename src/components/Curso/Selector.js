@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import firebase from 'firebase';
 
-import HomePage from './index';
-import HomePageProf from './HomePageProf';
+import CursoPage from './index';
+import CursoPageProf from './Curso';
 
 class Selector extends Component {
     constructor(props) {
@@ -15,6 +15,8 @@ class Selector extends Component {
     componentWillMount() {
         this.setState({ loading: true });
         console.log(this.props.idUsuario);
+        console.log("aca esta");
+        console.log("aca esta " + this.props.cursoId);
         firebase.database().ref(`users/${this.props.idUsuario}`).on('value', snapshot => {
             const rol = snapshot.val().rol;
             console.log(rol);
@@ -37,7 +39,7 @@ class Selector extends Component {
         return (
             <div>
                 {loading && <div>Loading ...</div>}
-                {rol !== 'profesor' ? <HomePage /> : <HomePageProf />}
+                {rol !== 'profesor' ? <CursoPage cursoId={this.props.cursoId} /> : <CursoPageProf cursoId={this.props.cursoId} />}
             </div>
         );
     }

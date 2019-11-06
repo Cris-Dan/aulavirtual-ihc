@@ -2,12 +2,13 @@ import React from 'react';
 import { AuthUserContext } from '../Session';
 import { withAuthorization } from '../Session';
 import HomePageBase from './index';
+import Selector from './Selector';
 const HomePage = () => (
     <AuthUserContext.Consumer>
         {authUser => (
             <div >
                 {console.log(authUser)}
-                <HomePageBase idUsuario={authUser} />
+                <Selector idUsuario={authUser.uid} />
             </div>
         )}
     </AuthUserContext.Consumer>
