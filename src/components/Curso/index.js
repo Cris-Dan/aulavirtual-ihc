@@ -20,11 +20,11 @@ class CursoPage extends Component {
         };
     }
     onSubmit = event => {
-        console.log("uwu");
+
         event.preventDefault();
     };
     componentDidMount() {
-        console.log("aca lo recibi: " + this.props.cursoId);
+
         this.setState({ loading: true });
         this.setState({ cursoId: this.props.cursoId });
 
@@ -41,7 +41,7 @@ class CursoPage extends Component {
                     clases: claseObject,
                     loading: false,
                 });
-                console.log(this.state.clases);
+
 
 
 
@@ -73,7 +73,7 @@ class CursoPage extends Component {
     render() {
 
         const { clases, curso, loading, archivos } = this.state;
-        console.log(curso);
+
 
 
 
@@ -121,7 +121,7 @@ const ClasesList = ({ clases, curso }) => (
                     </h2>
 
                 </div>
-                {console.log(curso)}
+
                 <div id={"collapse" + i} className={"collapse " + estadoHayTareaShow(clase.tarea)} aria-labelledby={"heading" + i} data-parent="#accordionExample">
                     <div className="card-body">
                         <ComunicadosList comunicados={
@@ -180,7 +180,7 @@ const TareasEntregadasList = ({ tareasEntregadas }) => (
                 <div>
 
                     <li key={i} className="list-group-item ">
-                        <p>✔ tarea numero {i + 1} entregada: </p>
+                        <p>✔ tarea numero {i} entregada: </p>
                         <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a></li>
                 </div>
 
@@ -194,13 +194,14 @@ const TareasEntregadasList = ({ tareasEntregadas }) => (
 );
 const TareasList = ({ tareas, curso, numero }) => (
     <ul className="list-group list-group-flush">
-        {console.log(curso)}
+
         {
             tareas.map((tarea, i) => (
-                tarea === "No hay Tareas en esta clase." ? (<div key={i}></div>) : (<li className="list-group-item" key={i}>
-                    <p>📥 {tarea} 🚨</p>
-                    <SubirArchivo curso={curso} numero={numero} />
-                </li>)
+                tarea.nombre === "No hay Tareas en esta clase." || tarea.entregado === true ? (<div key={i}></div>) :
+                    (<li className="list-group-item" key={i}>
+                        <p>📥 {tarea.nombre} 🚨</p>
+                        <SubirArchivo curso={curso} numero={numero} numeroTarea={i} />
+                    </li>)
             ))
         }
 

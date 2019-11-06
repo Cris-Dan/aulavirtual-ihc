@@ -7,7 +7,7 @@ const HomePage = () => (
     <AuthUserContext.Consumer>
         {authUser => (
             <div >
-                {console.log(authUser)}
+                
                 <Selector idUsuario={authUser.uid} />
             </div>
         )}

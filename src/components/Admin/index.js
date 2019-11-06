@@ -69,7 +69,7 @@ class AdminPage extends Component {
 
   render() {
     const { users, loading } = this.state;
-    console.log(users);
+    
     return (
       <div>
 

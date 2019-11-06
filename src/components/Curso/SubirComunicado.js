@@ -26,9 +26,9 @@ class ArchivoFormBase extends Component {
 
         firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
             const claseObject = snapshot.val().clases;
-            console.log("la clase " + claseObject);
+            
             this.setState({ clases: claseObject });
-            console.log(`clases/${claseObject}/clase/${this.props.numero}`);
+            
             firebase.database().ref(`clases/${claseObject}`).on('value', snapshot => {
                 this.setState({ claseActual: snapshot.val().clase[this.props.numero] });
 
@@ -74,7 +74,7 @@ class ArchivoFormBase extends Component {
             nombre,
             error, clases
         } = this.state;
-        { console.log("aca esta el numero: " + this.props.numero + " aca esta la clase: " + clases) }
+        
         return (
             <form onSubmit={this.onSubmit} className="mt-3">
 

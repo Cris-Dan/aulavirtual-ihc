@@ -23,13 +23,13 @@ class ArchivoFormBase extends Component {
         const numeroClase = this.props.numero;
         const numero = this.props.numero;
         const clases = this.state.clases;
-
+        console.log(this.props.numeroTarea);
 
         firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
             const claseObject = snapshot.val().clases;
-            console.log("la clase " + claseObject);
+
             this.setState({ clases: claseObject });
-            console.log(`clases/${claseObject}/clase/${numero}`);
+
             firebase.database().ref(`clases/${claseObject}`).on('value', snapshot => {
                 this.setState({ claseActual: snapshot.val().clase[numero] });
 
@@ -65,9 +65,9 @@ class ArchivoFormBase extends Component {
         const clases = this.state.clases;
         const claseActual = this.state.claseActual;
         const tareasEntregadas = this.state.tareasEntregadas;
-        console.log("what: " + cursoId2 + " numero de clase " + numero);
+        const numeroTarea = this.props.numeroTarea;
 
-        console.log(task);
+
         task.on('state_changed', snapshot => {
 
             let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -93,12 +93,12 @@ class ArchivoFormBase extends Component {
                     firebase.database().ref(`clases/${clases}/clase/${numero}/tareasEntregadas`).set(tareasEntregadas);
                 }
 
+
                
-                
-                    firebase.database().ref(`clases/${clases}/clase/${numero}/tareas`).set([
-                        "No hay Tareas en esta clase."
-                    ]);
-                
+                firebase.database().ref(`clases/${clases}/clase/${numero}/tareas/${numeroTarea}/entregado`).set(
+                    true
+                );
+
 
                 firebase.database().ref(`clases/${clases}/clase/${numero}/tarea`).set(false);
             }).catch(function (error) {
@@ -107,24 +107,24 @@ class ArchivoFormBase extends Component {
         });
 
 
-        console.log("uwu");
+
     };
 
     render() {
-        console.log("aca esta el curso: ");
+
         const cursoId = this.props.curso;
         const clases = this.state.clases;
         const claseActual = this.state.claseActual;
-        console.log("aca");
-        console.log(claseActual);
-        console.log(clases);
+        console.log("numero de tarea: " + this.props.numeroTarea + " de la clase" + claseActual);
+
+
         return (
             <div className="input-group">
                 <div className="row">
                     <div className="col-12">
                         <div className="custom-file">
                             <input type="file" id={cursoId} className="custom-file-input" aria-describedby="inputGroupFileAddon04" onChange={this.onSubmit} />
-                            <label className="custom-file-label" htmlhtmlFor={cursoId}>Elije un archivo</label>
+                            <label className="custom-file-label" htmlFor={cursoId}>Elije un archivo</label>
                         </div>
                     </div>
                     <div className="col-12">

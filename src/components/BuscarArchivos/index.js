@@ -76,7 +76,7 @@ class AdminPage extends Component {
 
                 
                 <ArchivoList archivos={archivos}  busqueda={busqueda}/>
-                {console.log(archivos)}
+                
               </div>
       </React.Fragment>)}
       </div>

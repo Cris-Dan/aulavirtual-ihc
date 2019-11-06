@@ -14,10 +14,10 @@ class Selector extends Component {
     }
     componentWillMount() {
         this.setState({ loading: true });
-        console.log(this.props.idUsuario);
+        
         firebase.database().ref(`users/${this.props.idUsuario}`).on('value', snapshot => {
             const rol = snapshot.val().rol;
-            console.log(rol);
+           
             this.setState({
                 rol,
                 loading: false

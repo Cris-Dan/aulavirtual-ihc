@@ -20,7 +20,7 @@ class ClaseFormBase extends Component {
     const claseTemp = {
       tarea: false,
       archivos: [{ nombre: "No hay archivos en esta clase." }],
-      tareas: ["No hay Tareas en esta clase."],
+      tareas: [{ nombre: "No hay Tareas en esta clase." }],
       comunicados: ["No hay mensajes en esta clase."],
       tareasEntregadas: [{ nombre: "No hay archivos en esta clase." }]
     };

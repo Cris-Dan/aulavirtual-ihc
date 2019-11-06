@@ -11,7 +11,7 @@ class HomePage extends React.Component {
         return (<AuthUserContext.Consumer>
             {authUser => (
                 <div >
-                    {console.log(authUser)}
+                   
                     <Selector idUsuario={authUser.uid} cursoId={this.props.match.params.curso} />
                 </div>
             )}

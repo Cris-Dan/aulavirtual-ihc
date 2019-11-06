@@ -26,9 +26,9 @@ class ArchivoFormBase extends Component {
 
         firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
             const claseObject = snapshot.val().clases;
-            console.log("la clase " + claseObject);
+
             this.setState({ clases: claseObject });
-            console.log(`clases/${claseObject}/clase/${this.props.numero}`);
+
             firebase.database().ref(`clases/${claseObject}`).on('value', snapshot => {
                 this.setState({ claseActual: snapshot.val().clase[this.props.numero] });
 
@@ -55,12 +55,12 @@ class ArchivoFormBase extends Component {
         const { nombre, tareasEntregadas, clases, numero } = this.state;
         if (tareasEntregadas != undefined) {
             tareasEntregadas.push(
-                nombre
+                { nombre, entregado: false }
 
             );
             firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/tareas`).set(tareasEntregadas);
 
-
+            firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/tarea`).set(true);
 
             event.preventDefault();
         };

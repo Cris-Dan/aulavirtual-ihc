@@ -22,7 +22,7 @@ class CursoPage extends Component {
         };
     }
     onSubmit = event => {
-        console.log("uwu");
+        
         event.preventDefault();
     };
 
@@ -43,7 +43,7 @@ class CursoPage extends Component {
                     clases: claseObject,
                     loading: false,
                 });
-                console.log(this.state.clases);
+                
 
 
 
@@ -75,8 +75,7 @@ class CursoPage extends Component {
     render() {
 
         const { clases, curso, loading, archivos } = this.state;
-        console.log(curso);
-
+       
 
 
         return (
@@ -123,7 +122,7 @@ const ClasesList = ({ clases, curso }) => (
                     </h2>
 
                 </div>
-                {console.log(curso)}
+                
                 <div id={"collapse" + i} className={"collapse " + estadoHayTareaShow(clase.tarea)} aria-labelledby={"heading" + i} data-parent="#accordionExample">
                     <div className="card-body">
                         <ComunicadosList comunicados={
@@ -205,13 +204,13 @@ const TareasList = ({ tareas, curso, numero }) => (
   </div>
         <div className="card-body">
             <ul className="list-group list-group-flush mb-3">
-                {console.log(curso)}
+                
                 {
                     tareas.map((tarea, i) => (
-                        tarea === "No hay Tareas en esta clase." ?
+                        tarea.nombre === "No hay Tareas en esta clase." ?
                             (<div key={i}></div>) :
                             (<li className="list-group-item" key={i}>
-                                📌 {tarea}
+                                📌 {tarea.nombre}
                             </li>)
                     ))
                 }

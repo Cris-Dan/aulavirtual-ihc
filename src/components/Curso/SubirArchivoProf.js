@@ -27,9 +27,9 @@ class ArchivoFormBase extends Component {
 
         firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
             const claseObject = snapshot.val().clases;
-            console.log("la clase " + claseObject);
+            
             this.setState({ clases: claseObject });
-            console.log(`clases/${claseObject}/clase/${numero}`);
+            
             firebase.database().ref(`clases/${claseObject}`).on('value', snapshot => {
                 this.setState({ claseActual: snapshot.val().clase[numero] });
 
@@ -65,9 +65,7 @@ class ArchivoFormBase extends Component {
         const clases = this.state.clases;
         const claseActual = this.state.claseActual;
         const archivos = this.state.archivos;
-        console.log("what: " + cursoId2 + " numero de clase " + numero);
-
-        console.log(task);
+        
         task.on('state_changed', snapshot => {
 
             let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -91,6 +89,7 @@ class ArchivoFormBase extends Component {
                         url: url,
                     });
                     firebase.database().ref(`clases/${clases}/clase/${numero}/archivos`).set(archivos);
+                    
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -98,17 +97,15 @@ class ArchivoFormBase extends Component {
         });
 
 
-        console.log("uwu");
+        
     };
 
     render() {
-        console.log("aca esta el curso: ");
+        
         const cursoId = this.props.curso;
         const clases = this.state.clases;
         const claseActual = this.state.claseActual;
-        console.log("aca");
-        console.log(claseActual);
-        console.log(clases);
+       
         return (
             <div>
                 <label htmlFor={cursoId}> Suba un nuevo archivo 📤</label>
@@ -117,7 +114,7 @@ class ArchivoFormBase extends Component {
                         <div className="col-12">
                             <div className="custom-file">
                                 <input type="file" id={cursoId} className="custom-file-input" aria-describedby="inputGroupFileAddon04" onChange={this.onSubmit} />
-                                <label className="custom-file-label" htmlhtmlFor={cursoId}>Elije un archivo</label>
+                                <label className="custom-file-label" htmlFor={cursoId}>Elije un archivo</label>
                             </div>
                         </div>
                         <div className="col-12">
