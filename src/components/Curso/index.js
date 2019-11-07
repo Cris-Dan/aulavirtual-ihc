@@ -5,6 +5,7 @@ import ArchivosRecientes from '../ArchivosRecientes';
 import Biblioteca from '../Bibliotecas';
 import './Curso.css';
 import SubirArchivo from './SubirArchivo';
+import BotonEliminarAl from './BotonEliminarAl';
 class CursoPage extends Component {
     constructor(props) {
         super(props);
@@ -37,7 +38,7 @@ class CursoPage extends Component {
             });
             this.props.firebase.clase(snapshot.val().clases).on('value', snapshot => {
                 const claseObject = snapshot.val().clase;
-                
+
                 this.setState({
                     clases: claseObject,
                     loading: false,
@@ -91,7 +92,7 @@ class CursoPage extends Component {
                                     <li className="breadcrumb-item active texto-blanco" aria-current="page">{curso}</li>
                                 </ol>
                             </nav>
-                            <ClasesList clases={clases} onSubmit={this.onSubmit} curso={this.state.cursoId} />
+                            <ClasesList clases={clases} onSubmit={this.onSubmit} curso={this.state.cursoId} claseId={this.state.claseId} />
                         </div>
                         <div className="col-12 col-md-4">
                             <div className="row">
@@ -109,7 +110,7 @@ class CursoPage extends Component {
 
 
 
-const ClasesList = ({ clases, curso }) => (
+const ClasesList = ({ clases, curso, claseId }) => (
     <div className="accordion" id="accordionExample">
 
         {clases.map((clase, i) => (
@@ -131,7 +132,7 @@ const ClasesList = ({ clases, curso }) => (
                             comunicados(clase.comunicados)
                         } />
                         <ArchivosList archivos={archivos(clase.archivos)} />
-                        <TareasEntregadasList tareasEntregadas={archivos(clase.tareasEntregadas)} />
+                        <TareasEntregadasList claseId={claseId} tareasEntregadas={archivos(clase.tareasEntregadas)} curso={curso} numero={i} />
                         <TareasList tareas={tareas(clase.tareas)} curso={curso} numero={i} />
 
                     </div>
@@ -173,7 +174,7 @@ function tareas(tareas) {
     return tareas !== undefined ? tareas : ["No hay Tareas en esta clase."];
 }
 
-const TareasEntregadasList = ({ tareasEntregadas }) => (
+const TareasEntregadasList = ({ tareasEntregadas, curso, numero, claseId }) => (
 
 
     <ul className="list-group list-group-flush">
@@ -184,7 +185,7 @@ const TareasEntregadasList = ({ tareasEntregadas }) => (
 
                     <li key={i} className="list-group-item ">
                         <p>✔ tarea numero {i} entregada: </p>
-                        <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a></li>
+                        <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a> <BotonEliminarAl claseId={claseId} curso={curso} numero={numero} i={i} /></li>
                 </div>
 
             ) :
