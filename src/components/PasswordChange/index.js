@@ -41,27 +41,41 @@ class PasswordChangeForm extends Component {
       passwordOne !== passwordTwo || passwordOne === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="New Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm New Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
+      <div className="col-12 col-md-8">
+        <div class="card ">
+          <form onSubmit={this.onSubmit}>
 
-        {error && <p>{error.message}</p>}
-      </form>
+            <div class="card-header"> Cambia tu contraseña</div>
+            <div class="card-body">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="">Contraseña</span>
+                </div>
+                <input name="passwordOne"
+                  value={passwordOne}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Nueva contraseña" class="form-control" />
+                <input name="passwordTwo"
+                  value={passwordTwo}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Confirma nueva contraseña" class="form-control" />
+              </div>
+
+
+
+              {error && <p>{error.message}</p>}
+
+            </div>
+            <div class="card-footer">
+              <button class="btn oscuro  texto-claro" disabled={isInvalid} type="submit"> Reiniciar contraseña</button>
+            </div>
+          </form>
+        </div>
+
+      </div >
+
     );
   }
 }

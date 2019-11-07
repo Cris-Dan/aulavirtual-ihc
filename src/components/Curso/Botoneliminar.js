@@ -11,7 +11,7 @@ class ArchivoFormBase extends Component {
     render() {
         return (
 
-            <button type="button" class="close" aria-label="Close" onClick={this.onSubmit}>
+            <button type="button" className="close" aria-label="Close" onClick={this.onSubmit}>
                 <span aria-hidden="true">&times;</span>
             </button>
         );

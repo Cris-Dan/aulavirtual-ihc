@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
+import './SignIn.css';
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 const SignInPage = () => (
-  <div className="margen">
-    <div className="container">
-      <h1>SignIn</h1>
-      <SignInForm />
-      <PasswordForgetLink />
-      <SignUpLink />
+  <div className="">
+    <div className="limiter">
+      <div className="container-login100 ">
+        <div className="wrap-login100 claro">
+
+          <SignInForm />
+          <div className="login100-more fondo">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 );
@@ -57,24 +61,37 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+      <form className="login100-form validate-form" onSubmit={this.onSubmit}>
+        <span className="login100-form-title p-b-43 claro">
+          INICIAR SESION
+					</span>
+
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">✉  Correo Institucional</label>
+          <input name="email"
+            value={email}
+            onChange={this.onChange} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo institucional." />
+          <small id="emailHelp" class="form-text text-muted">Si tiene problemas al momento de ingresar con su correo consulte con red telematica.</small>
+
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">🗝 Contraseña</label>
+          <input name="password"
+            value={password}
+            onChange={this.onChange} type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña." />
+        </div>
+
+
+
+
+        <div className="container-login100-form-btn">
+          <button disabled={isInvalid} type="submit" className="login100-form-btn azul-oscuro">
+            Ingresar
+						</button>
+        </div>
 
         {error && <p>{error.message}</p>}
       </form>
