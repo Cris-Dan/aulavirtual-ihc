@@ -37,6 +37,7 @@ class CursoPage extends Component {
             });
             this.props.firebase.clase(snapshot.val().clases).on('value', snapshot => {
                 const claseObject = snapshot.val().clase;
+                
                 this.setState({
                     clases: claseObject,
                     loading: false,
@@ -117,14 +118,14 @@ const ClasesList = ({ clases, curso }) => (
                 <div className="card-header " id={"heading" + i}>
 
                     <h2 className="mb-0">
-                        <button className={"btn btn-link " + estadoHayTareaCollapsed(clase.tarea)} type="button" data-toggle="collapse" data-target={"#collapse" + i} aria-expanded={clase.tarea} aria-controls={"collapse" + i}>
-                            {estadoHayTarea(clase.tarea, i)}
+                        <button className={"btn btn-link " + estadoHayTareaCollapsed(estadoHayTareaBool(clase.tareas))} type="button" data-toggle="collapse" data-target={"#collapse" + i} aria-expanded={clase.tarea} aria-controls={"collapse" + i}>
+                            {estadoHayTarea(estadoHayTareaBool(clase.tareas), i)}
                         </button>
                     </h2>
 
                 </div>
 
-                <div id={"collapse" + i} className={"collapse " + estadoHayTareaShow(clase.tarea)} aria-labelledby={"heading" + i} data-parent="#accordionExample">
+                <div id={"collapse" + i} className={"collapse " + estadoHayTareaShow(estadoHayTareaBool(clase.tareas))} aria-labelledby={"heading" + i} data-parent="#accordionExample">
                     <div className="card-body">
                         <ComunicadosList comunicados={
                             comunicados(clase.comunicados)
@@ -210,13 +211,13 @@ const TareasList = ({ tareas, curso, numero }) => (
     </ul>
 );
 function estadoHayTareaBool(tareas) {
-
+    let temp = true;
 
     tareas.forEach(tarea => {
         if (tarea.entregado !== undefined)
-            console.log(tarea.entregado)
+            if (tarea.entregado === false) temp = false
     });
-
+    return !temp;
 
 }
 function estadoHayTarea(estado, i) {

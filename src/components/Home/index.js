@@ -17,7 +17,7 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    
+
     this.setState({ loading: true });
 
     this.props.firebase.cursos().on('value', snapshot => {
@@ -103,7 +103,7 @@ const UserList = ({ users }) => (
       users.map(curso => (
         <div className="col-md-12 " key={curso.uid}>
           <Link className="sin-deco " to={`/home/${curso.uid}`}>
-            <CursoCard estado={curso.estado} nombre={curso.nombre} semestre={curso.semestre} escuela={curso.escuela} ciclo={curso.ciclo} />
+            <CursoCard uid={curso.uid} estado={curso.estado} nombre={curso.nombre} semestre={curso.semestre} escuela={curso.escuela} ciclo={curso.ciclo} />
           </Link>
         </div>
       )
