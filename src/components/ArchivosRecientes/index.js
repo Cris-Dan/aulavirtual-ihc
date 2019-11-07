@@ -10,11 +10,11 @@ const ArchivosRecientes = ({ archivos }) => (
         <div className="card border-dark mb-3" >
             <div className="card-header oscuro">
                 <h4 className="texto-claro">Archivos Recientes</h4>
-                </div>
+            </div>
             <div className="card-body text-dark">
                 <ul className="list-group list-group-flush">
                     {archivos.reverse().slice(0, 5).map((archivo, i) => (
-                        <li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>
+                        <li key={i} className="list-group-item azul-oscuro-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="azul-oscuro-texto"><i className="icon-file-pdf naranja-texto"></i> {archivo.nombre}</a></li>
                     ))
                     }
                 </ul>

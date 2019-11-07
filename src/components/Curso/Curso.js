@@ -7,6 +7,7 @@ import './Curso.css';
 import SubirArchivo from './SubirArchivoProf';
 import SubirComunicado from './SubirComunicado';
 import SubirTarea from './SubirTarea';
+import Botoneliminar from './Botoneliminar';
 class CursoPage extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,7 @@ class CursoPage extends Component {
         };
     }
     onSubmit = event => {
-        
+
         event.preventDefault();
     };
 
@@ -43,7 +44,7 @@ class CursoPage extends Component {
                     clases: claseObject,
                     loading: false,
                 });
-                
+
 
 
 
@@ -75,7 +76,7 @@ class CursoPage extends Component {
     render() {
 
         const { clases, curso, loading, archivos } = this.state;
-       
+
 
 
         return (
@@ -91,7 +92,7 @@ class CursoPage extends Component {
                                     <li className="breadcrumb-item active texto-blanco" aria-current="page">{curso}</li>
                                 </ol>
                             </nav>
-                            <ClasesList clases={clases} onSubmit={this.onSubmit} curso={this.state.cursoId} />
+                            <ClasesList clases={clases} onSubmit={this.onSubmit} curso={this.state.cursoId} claseId={this.state.claseId} />
                         </div>
                         <div className="col-12 col-md-4">
                             <div className="row">
@@ -109,7 +110,7 @@ class CursoPage extends Component {
 
 
 
-const ClasesList = ({ clases, curso }) => (
+const ClasesList = ({ clases, curso, claseId }) => (
     <div className="accordion" id="accordionExample">
         {clases.map((clase, i) => (
             <div className="card" key={i}>
@@ -117,21 +118,21 @@ const ClasesList = ({ clases, curso }) => (
 
                     <h2 className="mb-0">
                         <button className={"btn btn-link " + estadoHayTareaCollapsed(clase.tarea)} type="button" data-toggle="collapse" data-target={"#collapse" + i} aria-expanded={clase.tarea} aria-controls={"collapse" + i}>
-                            <div> Clase {i + 1}</div>
+                            <div className="verde"> Clase {i + 1}</div>
                         </button>
                     </h2>
 
                 </div>
-                
+
                 <div id={"collapse" + i} className={"collapse " + estadoHayTareaShow(clase.tarea)} aria-labelledby={"heading" + i} data-parent="#accordionExample">
-                    <div className="card-body">
+                    <div className="card-body ">
                         <ComunicadosList comunicados={
                             comunicados(clase.comunicados)
-                        } curso={curso} numero={i} />
+                        } curso={curso} numero={i} claseId={claseId} />
 
-                        <ArchivosList archivos={archivos(clase.archivos)} curso={curso} numero={i} />
+                        <ArchivosList archivos={archivos(clase.archivos)} curso={curso} numero={i} claseId={claseId} />
 
-                        <TareasList tareas={tareas(clase.tareas)} curso={curso} numero={i} />
+                        <TareasList tareas={tareas(clase.tareas)} curso={curso} numero={i} claseId={claseId} />
 
 
                     </div>
@@ -144,16 +145,18 @@ const ClasesList = ({ clases, curso }) => (
 function comunicados(comunicados) {
     return comunicados !== undefined ? comunicados : ["No hay mensajes en esta clase."];
 }
-const ComunicadosList = ({ comunicados, curso, numero }) => (
+const ComunicadosList = ({ comunicados, curso, numero, claseId }) => (
     <div className="card mb-3">
         <div className="card-header">
-            Archivos
-  </div>
+            <b>📰 Comunicados</b>
+        </div>
         <div className="card-body">
-            <ul className="list-group list-group-flush">
+            <ul className="list-group ">
                 {
                     comunicados.map((comunicado, i) => (comunicado === "No hay mensajes en esta clase." ? <div key={i}></div> :
-                        <li className="list-group-item" key={i}>✉ {comunicado}</li>
+                        <li className="list-group-item" key={i}>📰 {comunicado}
+                            <Botoneliminar claseId={claseId} curso={curso} numero={numero} atributo='comunicados' i={i} />
+                        </li>
                     ))
                 }
 
@@ -172,15 +175,19 @@ function archivos(archivos) {
 
 
 
-const ArchivosList = ({ archivos, curso, numero }) => (
+const ArchivosList = ({ archivos, curso, numero, claseId }) => (
     <div className="card mb-3">
         <div className="card-header">
-            Archivos
-  </div>
+            <b>🗃 Archivos</b>
+        </div>
         <div className="card-body">
-            <ul className="list-group list-group-flush">
+            <ul className="list-group ">
                 {
-                    archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (<li key={i} className="list-group-item naranja-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="naranja-texto"><i className="icon-file-pdf"></i> {archivo.nombre}</a></li>) : <div key={i} />))
+                    archivos.map((archivo, i) => (archivo.nombre !== "No hay archivos en esta clase." ? (
+                        <li key={i} className="list-group-item azul-oscuro-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="azul-oscuro-texto"><i className="icon-file-pdf naranja-texto"></i> {archivo.nombre}</a>
+                            <Botoneliminar curso={curso} numero={numero} atributo='archivos' i={i} claseId={claseId} />
+                        </li>
+                    ) : <div key={i} />))
                 }
 
             </ul>
@@ -197,20 +204,21 @@ function tareas(tareas) {
     return tareas !== undefined ? tareas : ["No hay Tareas en esta clase."];
 }
 
-const TareasList = ({ tareas, curso, numero }) => (
+const TareasList = ({ tareas, curso, numero, claseId }) => (
     <div className="card mb-3">
         <div className="card-header">
-            Tareas
-  </div>
+            <b>📚 Tareas</b>
+        </div>
         <div className="card-body">
-            <ul className="list-group list-group-flush mb-3">
-                
+            <ul className="list-group m-0">
+
                 {
                     tareas.map((tarea, i) => (
                         tarea.nombre === "No hay Tareas en esta clase." ?
                             (<div key={i}></div>) :
                             (<li className="list-group-item" key={i}>
-                                📌 {tarea.nombre}
+                                📙 {tarea.nombre}
+                                <Botoneliminar curso={curso} numero={numero} atributo='tareas' i={i} claseId={claseId} />
                             </li>)
                     ))
                 }

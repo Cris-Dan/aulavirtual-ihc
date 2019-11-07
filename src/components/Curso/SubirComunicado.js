@@ -19,16 +19,12 @@ class ArchivoFormBase extends Component {
     componentWillMount() {
         const cursoId2 = this.props.curso;
 
-        const numeroClase = this.props.numero;
-        const numero = this.props.numero;
-        const clases = this.state.clases;
-
 
         firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
             const claseObject = snapshot.val().clases;
-            
+
             this.setState({ clases: claseObject });
-            
+
             firebase.database().ref(`clases/${claseObject}`).on('value', snapshot => {
                 this.setState({ claseActual: snapshot.val().clase[this.props.numero] });
 
@@ -60,8 +56,7 @@ class ArchivoFormBase extends Component {
             );
             firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/comunicados`).set(tareasEntregadas);
 
-
-
+            this.setState({ ...INITIAL_STATE });
             event.preventDefault();
         };
     }
@@ -74,11 +69,11 @@ class ArchivoFormBase extends Component {
             nombre,
             error, clases
         } = this.state;
-        
+
         return (
             <form onSubmit={this.onSubmit} className="mt-3">
 
-                <label htmlFor="basic-url">Agregar nuevo comunicado 📩</label>
+                <label htmlFor="basic-url">Agregar nuevo comunicado 📝</label>
                 <div className="input-group mb-3">
                     <input className="form-control" id="basic-url"
                         name="nombre"

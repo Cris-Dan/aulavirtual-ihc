@@ -89,7 +89,7 @@ class ArchivoFormBase extends Component {
                         url: url,
                     });
                     firebase.database().ref(`clases/${clases}/clase/${numero}/archivos`).set(archivos);
-                    
+                    this.setState({ ...INITIAL_STATE });
                 }
             }).catch(function (error) {
                 console.log(error);

@@ -110,8 +110,10 @@ class CursoPage extends Component {
 
 const ClasesList = ({ clases, curso }) => (
     <div className="accordion" id="accordionExample">
+
         {clases.map((clase, i) => (
             <div className="card" key={i}>
+                {console.log(estadoHayTareaBool(clase.tareas))}
                 <div className="card-header " id={"heading" + i}>
 
                     <h2 className="mb-0">
@@ -145,7 +147,7 @@ const ComunicadosList = ({ comunicados }) => (
     <ul className="list-group list-group-flush">
         {
             comunicados.map((comunicado, i) => (comunicado === "No hay mensajes en esta clase." ? <div key={i}></div> :
-                <li className="list-group-item" key={i}>✉ {comunicado}</li>
+                <li className="list-group-item" key={i}>📰 {comunicado}</li>
             ))
         }
     </ul>
@@ -207,9 +209,18 @@ const TareasList = ({ tareas, curso, numero }) => (
 
     </ul>
 );
+function estadoHayTareaBool(tareas) {
 
+
+    tareas.forEach(tarea => {
+        if (tarea.entregado !== undefined)
+            console.log(tarea.entregado)
+    });
+
+
+}
 function estadoHayTarea(estado, i) {
-    return estado ? (<div className="naranja-texto">Clase {i + 1} HAY TAREAS PENDIENTES! 🚨</div>) : (<div> Clase {i + 1} estas al dia con las tareas.</div>);
+    return estado ? (<div className="naranja-texto">Clase {i + 1} HAY TAREAS PENDIENTES! 🚨</div>) : (<div className="verde"> Clase {i + 1} estas al dia con las tareas.</div>);
 }
 function estadoHayTareaCollapsed(estado) {
     return estado ? "" : "collapsed";

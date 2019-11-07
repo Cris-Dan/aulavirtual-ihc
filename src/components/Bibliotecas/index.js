@@ -9,12 +9,12 @@ const Biblioteca = () => (
             <div className="card-body text-dark ">
 
                 <ul className="list-group list-group-flush ">
-                    <li className="list-group-item naranja-texto"><a href="http://sisbib.unmsm.edu.pe/m_recursos/recursos_suscripcion.html" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Revistas Científicas</a></li>
-                    <li className="list-group-item naranja-texto"><a href="http://sisbib.unmsm.edu.pe/m_catalogo/catalogos.html" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Catálogo Electrónico</a></li>
-                    <li className="list-group-item naranja-texto"><a href="http://sisbib.unmsm.edu.pe/m_recursos/repositorios.html" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Repositorio Digital UNMSM</a></li>
-                    <li className="list-group-item naranja-texto"><a href="http://revistasinvestigacion.unmsm.edu.pe/" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Revistas de Investigación</a></li>
-                    <li className="list-group-item naranja-texto"><a href="http://revistasinvestigacion.unmsm.edu.pe/index.php/sistem" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Revista RISI</a></li>
-                    <li className="list-group-item naranja-texto"> <a href="http://bvcyt.concytec.gob.pe/" rel="noopener noreferrer" target="_blank" className="claro naranja-texto">Biblioteca CONCYTEC</a></li>
+                    <li className="list-group-item azul-oscuro-texto"><a href="http://sisbib.unmsm.edu.pe/m_recursos/recursos_suscripcion.html" rel="noopener noreferrer" target="_blank" className="claro azul-oscuro-texto">Revistas Científicas</a></li>
+                    <li className="list-group-item azul-oscuro-texto"><a href="http://sisbib.unmsm.edu.pe/m_catalogo/catalogos.html" rel="noopener noreferrer" target="_blank" className="claro azul-oscuro-texto">Catálogo Electrónico</a></li>
+                    <li className="list-group-item azul-oscuro-texto"><a href="http://sisbib.unmsm.edu.pe/m_recursos/repositorios.html" rel="noopener noreferrer" target="_blank" className="claro azul-oscuro-texto">Repositorio Digital UNMSM</a></li>
+                    <li className="list-group-item azul-oscuro-texto"><a href="http://revistasinvestigacion.unmsm.edu.pe/" rel="noopener noreferrer" target="_blank" className="claro azul-oscuro-texto">Revistas de Investigación</a></li>
+                    <li className="list-group-item azul-oscuro-texto"><a href="http://revistasinvestigacion.unmsm.edu.pe/index.php/sistem" rel="noopener noreferrer" target="_blank" className="claro azul-oscuro-texto">Revista RISI</a></li>
+                    <li className="list-group-item azul-oscuro-texto"> <a href="http://bvcyt.concytec.gob.pe/" rel="noopener noreferrer" target="_blank" className="claro azul-oscuro-texto">Biblioteca CONCYTEC</a></li>
                 </ul>
             </div>
         </div>

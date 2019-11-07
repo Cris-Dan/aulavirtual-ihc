@@ -19,22 +19,17 @@ class ArchivoFormBase extends Component {
     }
 
     componentWillMount() {
-        const cursoId2 = this.props.curso;
-        const numeroClase = this.props.numero;
-        const numero = this.props.numero;
-        const clases = this.state.clases;
-        console.log(this.props.numeroTarea);
 
-        firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
+        firebase.database().ref(`cursos/${this.props.curso}`).on('value', snapshot => {
             const claseObject = snapshot.val().clases;
 
             this.setState({ clases: claseObject });
 
             firebase.database().ref(`clases/${claseObject}`).on('value', snapshot => {
-                this.setState({ claseActual: snapshot.val().clase[numero] });
+                this.setState({ claseActual: snapshot.val().clase[this.props.numero] });
 
             });
-            firebase.database().ref(`clases/${claseObject}/clase/${numero}`).on('value', snapshot => {
+            firebase.database().ref(`clases/${claseObject}/clase/${this.props.numero}`).on('value', snapshot => {
                 this.setState({ tareasEntregadas: snapshot.val().tareasEntregadas });
 
             });
@@ -47,7 +42,6 @@ class ArchivoFormBase extends Component {
 
     componentWillUnmount() {
         const cursoId2 = this.props.curso;
-        const numeroClase = this.props.numero;
         const numero = this.props.numero;
         const clases = this.state.clases;
         firebase.database().ref(`clases/${clases}`).off();
@@ -63,7 +57,6 @@ class ArchivoFormBase extends Component {
         const cursoId2 = this.props.curso;
         const numero = this.props.numero;
         const clases = this.state.clases;
-        const claseActual = this.state.claseActual;
         const tareasEntregadas = this.state.tareasEntregadas;
         const numeroTarea = this.props.numeroTarea;
 
@@ -86,15 +79,18 @@ class ArchivoFormBase extends Component {
                     clase: numero
                 });
                 if (tareasEntregadas != undefined) {
-                    tareasEntregadas.push({
+                    /*tareasEntregadas.push({
+                        nombre: file.name,
+                        url: url,
+                    });*/
+                    firebase.database().ref(`clases/${clases}/clase/${numero}/tareasEntregadas/${numeroTarea}`).set({
                         nombre: file.name,
                         url: url,
                     });
-                    firebase.database().ref(`clases/${clases}/clase/${numero}/tareasEntregadas`).set(tareasEntregadas);
                 }
 
 
-               
+
                 firebase.database().ref(`clases/${clases}/clase/${numero}/tareas/${numeroTarea}/entregado`).set(
                     true
                 );

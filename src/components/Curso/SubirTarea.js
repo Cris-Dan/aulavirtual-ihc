@@ -59,9 +59,9 @@ class ArchivoFormBase extends Component {
 
             );
             firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/tareas`).set(tareasEntregadas);
-
+            firebase.database().ref(`cursos/${this.props.curso}/estado`).set(true);
             firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/tarea`).set(true);
-
+            this.setState({ ...INITIAL_STATE });
             event.preventDefault();
         };
     }
@@ -78,7 +78,7 @@ class ArchivoFormBase extends Component {
         return (
             <form onSubmit={this.onSubmit} >
 
-                <label htmlFor="basic-url">Agregar nueva tarea 📤</label>
+                <label htmlFor="basic-url">Agregar nueva tarea 📚</label>
                 <div className="input-group mb-3">
                     <input className="form-control" id="basic-url"
                         name="nombre"
