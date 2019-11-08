@@ -64,7 +64,7 @@ class HomePage extends Component {
                     <div className="container margen2 ">
                         <div className="row">
                             <div className="col-12">
-                                <h2 className="margen2 texto-claro ">BIENVENIDO AL AULA VIRTUAL PROFESOR</h2>
+                                <h2 className="mt-5 texto-claro ">BIENVENIDO AL AULA VIRTUAL PROFESOR</h2>
                             </div>
                             < div className="col-12">
                                 <p className="texto-claro">aula virtual semestre 2019-2</p>

@@ -38,7 +38,7 @@ class Selector extends Component {
         const { rol, loading } = this.state;
         return (
             <div>
-                {loading && <div>Loading ...</div>}
+
                 {rol !== 'profesor' ? <CursoPage cursoId={this.props.cursoId} /> : <CursoPageProf cursoId={this.props.cursoId} />}
             </div>
         );

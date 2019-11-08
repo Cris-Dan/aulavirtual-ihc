@@ -53,7 +53,7 @@ class AdminPage extends Component {
     const { archivos, loading,busqueda } = this.state;
     
     return (
-      <div className="container margen">
+      <div className="container ">
          {loading && <div><h3>Cargando pagina por favor espere...</h3></div>}
          {!loading && archivos && (<React.Fragment>
             <div className="row justify-content-center mb-3">
@@ -105,7 +105,7 @@ export default withFirebase(AdminPage);
 
 
 const BuscarArchivos = () => (
-    <div className="container margen">
+    <div className="container ">
         <div className="row justify-content-center">
             <div className="col-12
              col-md-6 p-4">

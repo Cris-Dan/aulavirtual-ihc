@@ -47,19 +47,19 @@ class AccountPageBase extends React.Component {
         {!loading && user && (<React.Fragment>
           <div className="row">
             <div className="col-12 col-md-4">
-              <div class="card ">
-                <div class="card-header"> Datos del  {user.rol}</div>
-                <div class="card-body">
-                  <h5 class="card-title">{user.username}</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><p class="card-text">Correo: {user.email}</p></li>
-                    <li class="list-group-item"><p class="card-text">Edad: {user.edad}</p></li>
-                    <li class="list-group-item"><p class="card-text">Genero: {user.genero}</p></li>
+              <div className="card ">
+                <div className="card-header"> Datos del  {user.rol}</div>
+                <div className="card-body">
+                  <h5 className="card-title">{user.username}</h5>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item"><p className="card-text">Correo: {user.email}</p></li>
+                    <li className="list-group-item"><p className="card-text">Edad: {user.edad}</p></li>
+                    <li className="list-group-item"><p className="card-text">Genero: {user.genero}</p></li>
                 
                   </ul>
 
                 </div>
-                <div class="card-footer text-muted"> Actualizar datos proximamente...</div>
+                <div className="card-footer text-muted"> Actualizar datos proximamente...</div>
               </div>
             </div>
 
@@ -78,7 +78,7 @@ class AccountPageBase extends React.Component {
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
-      <div className="container margen">
+      <div className="container mt-3">
 
         <AccountPageBase usuarioId={authUser.uid} />
 

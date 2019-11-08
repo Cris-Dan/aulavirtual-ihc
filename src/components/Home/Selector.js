@@ -36,7 +36,7 @@ class Selector extends Component {
         const { rol, loading } = this.state;
         return (
             <div>
-                {loading && <div>Loading ...</div>}
+              
                 {rol !== 'profesor' ? <HomePage /> : <HomePageProf />}
             </div>
         );

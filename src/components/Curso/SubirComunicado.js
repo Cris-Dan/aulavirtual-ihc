@@ -56,7 +56,7 @@ class ArchivoFormBase extends Component {
             );
             firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/comunicados`).set(tareasEntregadas);
 
-            this.setState({ ...INITIAL_STATE });
+            this.setState({ nombre: '' });
             event.preventDefault();
         };
     }

@@ -15,10 +15,10 @@ import CursoPage from '../Curso/Autorizado';
 
 const App = () => (
   <Router>
-    <div>
+    <div className='w100'>
       <Navigation />
 
-      <hr />
+    
       <Route exact path={ROUTES.SEARCH} component={BuscarArchivos} />
       <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />

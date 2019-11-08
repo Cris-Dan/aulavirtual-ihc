@@ -7,7 +7,7 @@ import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
 import './nav.css';
 const Navigation = () => (
-  <div className="navfijo">
+  <div className="">
     <nav className="navbar navbar-expand-lg navbar-light oscuro ">
       <div className="container">
         <Link className="navbar-brand" to={ROUTES.HOME}>

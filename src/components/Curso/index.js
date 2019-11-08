@@ -80,7 +80,7 @@ class CursoPage extends Component {
 
 
         return (
-            <div className="container margen">
+            <div className="container mt-3">
 
                 {loading && <div><h3>Cargando pagina por favor espere...</h3></div>}
                 {!loading && curso && clases && archivos && (<React.Fragment>

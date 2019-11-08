@@ -19,9 +19,6 @@ class ArchivoFormBase extends Component {
     componentWillMount() {
         const cursoId2 = this.props.curso;
 
-        const numeroClase = this.props.numero;
-        const numero = this.props.numero;
-        const clases = this.state.clases;
 
 
         firebase.database().ref(`cursos/${cursoId2}`).on('value', snapshot => {
@@ -61,7 +58,7 @@ class ArchivoFormBase extends Component {
             firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/tareas`).set(tareasEntregadas);
             firebase.database().ref(`cursos/${this.props.curso}/estado`).set(true);
             firebase.database().ref(`clases/${clases}/clase/${this.props.numero}/tarea`).set(true);
-            this.setState({ ...INITIAL_STATE });
+            this.setState({ nombre: '' });
             event.preventDefault();
         };
     }

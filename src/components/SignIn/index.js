@@ -8,18 +8,22 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 const SignInPage = () => (
-  <div className="">
-    <div className="limiter">
-      <div className="container-login100 ">
-        <div className="wrap-login100 claro">
+  <div className="row margen no-gutters mt-0 w100">
+    <div className="col-md-8 col-0 fondo  w100">
 
-          <SignInForm />
-          <div className="login100-more fondo">
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+    <div className="col-md-4 col-12 w100">
+      <SignInForm />
+    </div>
+
+
+
+
+
+
+
+
+  </div >
 );
 
 const INITIAL_STATE = {
@@ -61,14 +65,15 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form className="login100-form validate-form" onSubmit={this.onSubmit}>
-        <span className="login100-form-title p-b-43 claro">
+      <form className="ml-5 mr-5 margen-top margen-bot" onSubmit={this.onSubmit}>
+        <h2 className="mb-5">
           INICIAR SESION
-					</span>
+					</h2>
+
 
 
         <div class="form-group">
-          <label for="exampleInputEmail1">✉  Correo Institucional</label>
+          <label htmlFor="exampleInputEmail1">✉  Correo Institucional</label>
           <input name="email"
             value={email}
             onChange={this.onChange} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo institucional." />
@@ -78,7 +83,7 @@ class SignInFormBase extends Component {
 
 
         <div class="form-group">
-          <label for="exampleInputPassword1">🗝 Contraseña</label>
+          <label htmlFor="exampleInputPassword1">🗝 Contraseña</label>
           <input name="password"
             value={password}
             onChange={this.onChange} type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña." />
@@ -88,7 +93,7 @@ class SignInFormBase extends Component {
 
 
         <div className="container-login100-form-btn">
-          <button disabled={isInvalid} type="submit" className="login100-form-btn azul-oscuro">
+          <button disabled={isInvalid} type="submit" className="btn btn-block texto-claro azul-oscuro">
             Ingresar
 						</button>
         </div>

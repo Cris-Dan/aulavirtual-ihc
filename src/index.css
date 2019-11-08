@@ -1,6 +1,9 @@
-body {
+body, html, main, #root, .w100 {
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 code {
@@ -13,14 +16,6 @@ code {
 
 .sin-deco:hover {
   TEXT-DECORATION: none;
-}
-
-.margen {
-  margin-top: 80px;
-}
-
-.margen2 {
-  margin-top: 64px;
 }
 
 .navfijo {
@@ -129,3 +124,8 @@ code {
 .barra-carga {
   width: 100%;
 }
+
+.margen-top {
+  margin-top: 20%;
+}
+

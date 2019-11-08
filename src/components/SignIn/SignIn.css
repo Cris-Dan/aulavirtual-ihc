@@ -1,3 +1,6 @@
 .fondo {
     background-image: url("https://scontent.flim2-1.fna.fbcdn.net/v/t1.15752-9/73111362_410803679872776_4490738077219684352_n.jpg?_nc_cat=102&_nc_oc=AQmovzrDsMYDxG3yYG9sO6w-knU6yHZWUMicF370X6xZiwuAr00aXkqTn4npqKI2l-4&_nc_ht=scontent.flim2-1.fna&oh=2f949ce9b907d8b9686bafc97f69cff4&oe=5E1AFB6A");
+    width: 100%;
+    height: 100%;
+    flex: auto;
 }

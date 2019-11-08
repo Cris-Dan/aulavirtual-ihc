@@ -42,25 +42,25 @@ class PasswordChangeForm extends Component {
 
     return (
       <div className="col-12 col-md-8">
-        <div class="card ">
+        <div className="card ">
           <form onSubmit={this.onSubmit}>
 
-            <div class="card-header"> Cambia tu contraseña</div>
-            <div class="card-body">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="">Contraseña</span>
+            <div className="card-header"> Cambia tu contraseña</div>
+            <div className="card-body">
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="">Contraseña</span>
                 </div>
                 <input name="passwordOne"
                   value={passwordOne}
                   onChange={this.onChange}
                   type="password"
-                  placeholder="Nueva contraseña" class="form-control" />
+                  placeholder="Nueva contraseña" className="form-control" />
                 <input name="passwordTwo"
                   value={passwordTwo}
                   onChange={this.onChange}
                   type="password"
-                  placeholder="Confirma nueva contraseña" class="form-control" />
+                  placeholder="Confirma nueva contraseña" className="form-control" />
               </div>
 
 
@@ -68,8 +68,8 @@ class PasswordChangeForm extends Component {
               {error && <p>{error.message}</p>}
 
             </div>
-            <div class="card-footer">
-              <button class="btn oscuro  texto-claro" disabled={isInvalid} type="submit"> Reiniciar contraseña</button>
+            <div className="card-footer">
+              <button className="btn oscuro  texto-claro" disabled={isInvalid} type="submit"> Reiniciar contraseña</button>
             </div>
           </form>
         </div>
