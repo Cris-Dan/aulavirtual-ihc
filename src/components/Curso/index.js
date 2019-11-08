@@ -181,12 +181,12 @@ const TareasEntregadasList = ({ tareasEntregadas, curso, numero, claseId }) => (
 
         {
             tareasEntregadas.map((tareaEntregada, i) => (tareaEntregada.nombre !== "No hay archivos en esta clase." ? (
-                <div>
 
-                    <li key={i} className="list-group-item ">
-                        <p>✔ tarea numero {i} entregada: </p>
-                        <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a> <BotonEliminarAl claseId={claseId} curso={curso} numero={numero} i={i} /></li>
-                </div>
+
+                <li key={i} className="list-group-item ">
+                    <p>✔ tarea numero {i} entregada: </p>
+                    <a href={tareaEntregada.url} rel="noopener noreferrer" target="_blank" className="verde"><i className="icon-file-pdf"></i> {tareaEntregada.nombre}</a> <BotonEliminarAl claseId={claseId} curso={curso} numero={numero} i={i} /></li>
+
 
             ) :
                 <div key={i} />

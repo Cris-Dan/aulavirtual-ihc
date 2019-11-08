@@ -187,7 +187,7 @@ const ArchivosList = ({ archivos, curso, numero, claseId }) => (
                         <li key={i} className="list-group-item azul-oscuro-texto"><a href={archivo.url} rel="noopener noreferrer" target="_blank" className="azul-oscuro-texto"><i className="icon-file-pdf naranja-texto"></i> {archivo.nombre}</a>
                             <Botoneliminar curso={curso} numero={numero} atributo='archivos' i={i} claseId={claseId} />
                         </li>
-                    ) : <div key={i} />))
+                    ) : (<div key={i}></div>)))
                 }
 
             </ul>
