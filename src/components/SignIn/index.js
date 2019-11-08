@@ -62,7 +62,7 @@ class SignInFormBase extends Component {
   render() {
     const { email, password, error } = this.state;
 
-    const isInvalid = password === '' || email === '';
+    const isInvalid = password.length < 8 || email === '';
 
     return (
       <form className="ml-5 mr-5 margen-top margen-bot" onSubmit={this.onSubmit}>
@@ -84,9 +84,11 @@ class SignInFormBase extends Component {
 
         <div class="form-group">
           <label htmlFor="exampleInputPassword1">🗝 Contraseña</label>
-          <input name="password"
+          <input name="password" pattern=".{8,}"
             value={password}
-            onChange={this.onChange} type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña." />
+            onChange={this.onChange} type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passHelp" placeholder="Ingrese su contraseña." />
+          <small id="passHelp" class="form-text text-muted">La contraseña debe tener al menos 8 caracteres.</small>
+
         </div>
 
 
@@ -98,7 +100,9 @@ class SignInFormBase extends Component {
 						</button>
         </div>
 
-        {error && <p>{error.message}</p>}
+        {error && <p>{error.message === "The password is invalid or the user does not have a password." ?
+          ("la contraseña es invalida o el correo no se encuentra registrado.") :
+          ("el formato del correo debe ser: ejemplo@unmsm.edu.pe ")}</p>}
       </form>
     );
   }
