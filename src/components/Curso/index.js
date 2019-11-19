@@ -5,6 +5,7 @@ import ArchivosRecientes from '../ArchivosRecientes';
 import Biblioteca from '../Bibliotecas';
 import './Curso.css';
 import SubirArchivo from './SubirArchivo';
+import Dropzone from 'react-dropzone';
 import BotonEliminarAl from './BotonEliminarAl';
 class CursoPage extends Component {
     constructor(props) {
@@ -205,12 +206,15 @@ const TareasList = ({ tareas, curso, numero }) => (
                     (<li className="list-group-item" key={i}>
                         <p>📥 {tarea.nombre} 🚨</p>
                         <SubirArchivo curso={curso} numero={numero} numeroTarea={i} />
+                       
                     </li>)
             ))
         }
 
     </ul>
 );
+
+
 function estadoHayTareaBool(tareas) {
     let temp = true;
 

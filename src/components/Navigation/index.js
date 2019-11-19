@@ -46,7 +46,6 @@ const NavigationAuth = () => (
         </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdown">
         <Link className="dropdown-item" to={ROUTES.ACCOUNT}>Cuenta</Link>
-        <Link className="dropdown-item" to={ROUTES.ADMIN}>Administrar</Link>
         <div className="dropdown-divider"></div>
         <SignOutButton />
       </div>

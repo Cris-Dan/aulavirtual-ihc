@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firebase from 'firebase';
+import Dropzone from 'react-dropzone';
 const INITIAL_STATE = {
     nombre: '',
     url: '',
@@ -127,6 +128,7 @@ class ArchivoFormBase extends Component {
                         <progress className="barra-carga" value={this.state.uploadValue} max='100'>
                             {this.state.uploadValue} % </progress>
                     </div>
+                   
                 </div>
             </div>
         );
